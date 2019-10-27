@@ -8,5 +8,8 @@ spring:
     name: cloud-discovery-client
   cloud:
     nacos:
+      config:
+        server-addr: 47.99.209.72:8848
+        file-extension: yaml
       discovery:
         server-addr: 47.99.209.72:8848
