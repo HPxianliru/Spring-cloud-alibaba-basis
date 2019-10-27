@@ -1,0 +1,12 @@
+server:
+  port: 9014
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: cloud-discovery-server
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 47.99.209.72:8848
