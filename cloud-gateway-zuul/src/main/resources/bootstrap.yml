@@ -1,0 +1,38 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: gateway-zuul-server
+  cloud:
+    nacos:
+      config:
+        server-addr: 47.99.209.72:8848
+        file-extension: yaml
+
+zuul:
+  host:
+    # 目标主机的最大连接数，默认值为200
+    max-total-connections: 500
+    # 每个主机的初始连接数，默认值为20
+    max-per-route-connections: 100
+  routes:
+    discovery-server:
+      path: /server/**
+      serviceId: cloud-discovery-server
+    client-common:
+      path: /client/**
+      serviceId: cloud-discovery-client
+      sensitiveHeaders: X-ABC,Authorization
+  # 所有路由的默认Hystrix隔离模式（ExecutionIsolationStrategy）为SEMAPHORE。如果此隔离模式是首选，则zuul.ribbonIsolationStrategy可以更改为THREAD
+  ribbon-isolation-strategy: thread
+  # 这个属性意思，指定忽略的Header字段列表
+  ignored-services: '*'
+  # 字段比较敏感，不希望传递给下游微服务。 设置空没有要忽略的敏感字段。全部传给下游服务
+  sensitive-headers: X-ABC
+  ribbon:
+    eager-load:
+      # 强制加载，不设置会进行懒加载。spring 第一次请求会非常慢
+      enabled: true
+
+
+

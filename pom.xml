@@ -14,6 +14,7 @@
     <modules>
         <module>cloud-discovery-server</module>
         <module>cloud-discovery-client-common</module>
+        <module>cloud-gateway-zuul</module>
     </modules>
 
 
