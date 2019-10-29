@@ -3,10 +3,13 @@ package com.xian.cloud.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.util.StreamUtils;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.Charset;
 
 /**
  * @Author: xlr
@@ -33,5 +36,11 @@ public class DiscoverCotroller {
         return "hello " + name + " age = " + age;
     }
 
+    @PostMapping("/tom")
+    public String tom(HttpServletRequest request) throws Exception {
+        InputStream in = request.getInputStream();
+        String body = StreamUtils.copyToString(in, Charset.forName("UTF-8"));
+        return "hello "+body+" this is method POST";
+    }
 
 }
