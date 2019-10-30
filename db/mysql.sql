@@ -1,0 +1,1 @@
+insert into `sys_zuul_route` ( `update_time`, `del_flag`, `enabled`, `retryable`, `service_id`, `create_time`, `path`, `strip_prefix`, `sensitiveHeaders_list`, `url`) values ( '2019-10-30 08:11:51', '0', '1', '1', 'cloud-discovery-client', '2018-05-21 11:40:38', '/client/**', '1', 'X-ABC,X-Foo', '');
