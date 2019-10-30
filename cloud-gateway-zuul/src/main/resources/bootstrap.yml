@@ -1,4 +1,9 @@
 spring:
+  datasource:
+    type: com.mysql.cj.jdbc.MysqlDataSource
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3308/cloud_xlr?characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false
   profiles:
     active: dev
   application:
@@ -19,10 +24,10 @@ zuul:
     discovery-server:
       path: /server/**
       serviceId: cloud-discovery-server
-    client-common:
-      path: /client/**
-      serviceId: cloud-discovery-client
-      sensitiveHeaders: X-ABC,X-Foo
+#    client-common:
+#      path: /client/**
+#      serviceId: cloud-discovery-client
+#      sensitiveHeaders: X-ABC,X-Foo
   # 所有路由的默认Hystrix隔离模式（ExecutionIsolationStrategy）为SEMAPHORE。如果此隔离模式是首选，则zuul.ribbonIsolationStrategy可以更改为THREAD
   ribbon-isolation-strategy: thread
   # 这个属性意思，* 忽略未指定的服务列表 有具体服务名称 忽略指定的服务
