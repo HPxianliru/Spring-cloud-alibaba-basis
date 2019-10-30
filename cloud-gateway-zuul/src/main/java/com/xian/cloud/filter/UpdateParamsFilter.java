@@ -87,7 +87,6 @@ public class UpdateParamsFilter extends ZuulFilter {
             }
             //post和put需重写HttpServletRequestWrapper
             if ("POST".equals(method) || "PUT".equals(method)) {
-
                 //TODO 在这里修改或者添加内容
                 json.put("tom","hello tom");
                 String newBody = json.toString();

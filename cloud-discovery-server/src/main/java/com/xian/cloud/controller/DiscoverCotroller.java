@@ -36,11 +36,11 @@ public class DiscoverCotroller {
         return "hello " + name + " age = " + age;
     }
 
-    @PostMapping("/tom")
+    @PostMapping("/test")
     public String tom(HttpServletRequest request) throws Exception {
         InputStream in = request.getInputStream();
         String body = StreamUtils.copyToString(in, Charset.forName("UTF-8"));
-        return "hello "+body+" this is method POST";
+        return "hello this is method POST";
     }
 
 }

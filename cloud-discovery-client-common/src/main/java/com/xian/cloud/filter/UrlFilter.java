@@ -25,16 +25,19 @@ public class UrlFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        Enumeration<String> attributeNames = servletRequest.getAttributeNames();
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         String requestURI = req.getRequestURI();
         String header = req.getHeader("X-Foo");
         String abc = req.getHeader("X-ABC");
-
+        String authorization = req.getHeader("Authorization");
+        String tom = req.getParameter("tom");
+        String mike = req.getParameter("mike");
         log.warn("过滤器：请求地址"+requestURI);
         log.warn("uuid:{}",header);
         log.warn("abc uuid:{}",abc);
-
+        log.warn("authorization :{}",authorization);
+        log.warn("tom :{}",tom);
+        log.warn("mike :{}",mike);
         filterChain.doFilter(servletRequest, servletResponse);
     }
 

@@ -22,11 +22,15 @@ zuul:
     client-common:
       path: /client/**
       serviceId: cloud-discovery-client
-      sensitiveHeaders: X-ABC,Authorization
+      sensitiveHeaders: X-ABC,X-Foo
   # 所有路由的默认Hystrix隔离模式（ExecutionIsolationStrategy）为SEMAPHORE。如果此隔离模式是首选，则zuul.ribbonIsolationStrategy可以更改为THREAD
   ribbon-isolation-strategy: thread
-  # 这个属性意思，指定忽略的Header字段列表
-  ignored-services: '*'
+  # 这个属性意思，* 忽略未指定的服务列表 有具体服务名称 忽略指定的服务
+  ignored-services: "*"
+  # 忽略指定的url 路径
+  ignored—patterns:
+  # 忽略指定的header 头部信息
+  ignored-headers: Authorization
   # 字段比较敏感，不希望传递给下游微服务。 设置空没有要忽略的敏感字段。全部传给下游服务
   sensitive-headers: X-ABC
   ribbon:

@@ -25,7 +25,6 @@ public class UrlFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        Enumeration<String> attributeNames = servletRequest.getAttributeNames();
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         String requestURI = req.getRequestURI();
         String header = req.getHeader("X-Foo");

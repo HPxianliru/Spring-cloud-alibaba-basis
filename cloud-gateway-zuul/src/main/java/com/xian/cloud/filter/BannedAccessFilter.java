@@ -5,9 +5,13 @@ import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 import com.xian.cloud.enums.FilterTypeEnum;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -21,13 +25,17 @@ import java.util.UUID;
 @Slf4j
 public class BannedAccessFilter extends ZuulFilter {
 
+    /**
+     * 路由器的类型指定
+     * @return
+     */
     @Override
     public String filterType() {
         return FilterTypeEnum.PRE.getType();
     }
 
     /**
-     * 执行顺序
+     * 执行顺序 数值越小。执行顺序越靠前
      * @return
      */
     @Override
@@ -41,7 +49,14 @@ public class BannedAccessFilter extends ZuulFilter {
      */
     @Override
     public boolean shouldFilter() {
-        return true;
+        RequestContext context = RequestContext.getCurrentContext();
+        HttpServletRequest request = context.getRequest();
+        String requestURI = request.getRequestURI();
+        if(StringUtils.isNotBlank(requestURI) && (requestURI.contains("client") ||
+            requestURI.contains("server"))){
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -55,7 +70,7 @@ public class BannedAccessFilter extends ZuulFilter {
         HttpServletResponse servletResponse = context.getResponse();
         String uuid = UUID.randomUUID().toString();
         context.addZuulRequestHeader("X-Foo", uuid);
-        //context.addZuulRequestHeader("X-ABC",uuid);
+        context.addZuulRequestHeader("X-ABC",uuid);
         log.info("X-Foo:{}",uuid);
         return null;
     }
