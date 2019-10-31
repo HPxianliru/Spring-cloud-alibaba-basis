@@ -1,0 +1,29 @@
+[
+  {
+    "apiName": "cloud-discovery-server",
+    "predicateItems": [
+      {
+        "pattern": "/server/**"
+      },
+      {
+        "pattern": "/server/server/**",
+        "matchStrategy": 1
+      },
+      {
+        "items": [
+          {
+            "pattern": "/server/**"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "apiName": "cloud-discovery-client",
+    "predicateItems": [
+      {
+        "pattern": "/client/**"
+      }
+    ]
+  }
+]

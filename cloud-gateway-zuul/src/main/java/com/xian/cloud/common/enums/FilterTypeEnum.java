@@ -1,4 +1,4 @@
-package com.xian.cloud.enums;
+package com.xian.cloud.common.enums;
 
 import lombok.Getter;
 

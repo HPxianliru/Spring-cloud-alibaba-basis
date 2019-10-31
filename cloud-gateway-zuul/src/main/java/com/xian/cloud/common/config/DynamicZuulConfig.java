@@ -1,4 +1,4 @@
-package com.xian.cloud.config;
+package com.xian.cloud.common.config;
 
 import com.xian.cloud.router.DiscoveryRouteLocator;
 import org.springframework.beans.factory.annotation.Autowired;

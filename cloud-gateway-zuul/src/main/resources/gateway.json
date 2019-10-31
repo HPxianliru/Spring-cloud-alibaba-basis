@@ -1,0 +1,17 @@
+[
+  {
+    "resource": "cloud-discovery-server",
+    "count": 1
+  },
+  {
+    "resource": "cloud-discovery-client",
+    "count": 10,
+    "intervalSec": 2,
+    "controlBehavior": 1,
+    "maxQueueingTimeoutMs": 200,
+    "paramItem": {
+      "parseStrategy": 3,
+      "fieldName": "test"
+    }
+  }
+]

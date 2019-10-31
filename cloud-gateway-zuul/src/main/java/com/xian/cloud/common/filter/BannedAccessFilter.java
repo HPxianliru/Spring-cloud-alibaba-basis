@@ -1,17 +1,15 @@
-package com.xian.cloud.filter;
+package com.xian.cloud.common.filter;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
-import com.xian.cloud.enums.FilterTypeEnum;
+import com.xian.cloud.common.enums.FilterTypeEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 /**

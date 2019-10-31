@@ -9,6 +9,17 @@ spring:
   application:
     name: gateway-zuul-server
   cloud:
+    sentinel:
+      datasource.ds2.file:
+        file: "classpath: gateway.json"
+        ruleType: gw-flow
+      datasource.ds1.file:
+        file: "classpath: api.json"
+        ruleType: gw-api-group
+      transport:
+        dashboard: localhost:8890
+      filter:
+        enabled: false
     nacos:
       config:
         server-addr: 47.99.209.72:8848
@@ -44,4 +55,12 @@ zuul:
       enabled: true
 
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
 

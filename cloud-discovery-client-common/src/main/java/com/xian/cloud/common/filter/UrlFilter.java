@@ -1,4 +1,4 @@
-package com.xian.cloud.filter;
+package com.xian.cloud.common.filter;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -6,7 +6,6 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.util.Enumeration;
 
 /**
  * <Description>
