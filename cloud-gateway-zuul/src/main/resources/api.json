@@ -3,7 +3,8 @@
     "apiName": "cloud-discovery-server",
     "predicateItems": [
       {
-        "pattern": "/server/**"
+        "pattern": "/server/**",
+        "matchStrategy": 1
       },
       {
         "pattern": "/server/server/**",
@@ -12,7 +13,8 @@
       {
         "items": [
           {
-            "pattern": "/server/**"
+            "pattern": "/server/**",
+            "matchStrategy": 1
           }
         ]
       }
