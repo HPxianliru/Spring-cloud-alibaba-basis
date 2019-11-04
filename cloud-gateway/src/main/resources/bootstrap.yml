@@ -21,7 +21,10 @@ spring:
     gateway:
       discovery:
         locator:
+          # 是否与服务发现组件进行结合，通过serviceId转发到具体的服务实例。默认为false，
+          # 为true代表开启基于服务发现的路由规则。
           enabled: true
+          # 配置之后访问时无需大写
           lower-case-service-id: true
       routes:
         - id: cloud-discovery-server
