@@ -11,4 +11,10 @@
     <artifactId>cloud-discovery-client-common</artifactId>
     <name>服务消费者</name>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+    </dependencies>
 </project>

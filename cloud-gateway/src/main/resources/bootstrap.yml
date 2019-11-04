@@ -1,0 +1,48 @@
+server:
+  port: 9000
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: cloud-gateway-demo
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: non_null
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 47.99.209.72:8848
+      # ${prefix}-${spring.profile.active}.${file-extension}
+      config:
+        server-addr: 47.99.209.72:8848
+        file-extension: yaml
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: cloud-discovery-server
+          uri: lb://cloud-discovery-server
+          predicates:
+            # 路径匹配，以 api 开头，直接配置是不生效的，看 filters 配置
+            - Path=/server/**
+          filters:
+            # 前缀过滤，默认配置下，我们的请求路径是 http://localhost:9000/myshop-service-consumer-item/** 这时会路由到指定的服务
+            # 此处配置去掉 1 个路径前缀，再配置上面的 Path=/api/**，就能按照 http://localhost:9000/api/** 的方式访问了
+            - StripPrefix=1
+        - id: cloud-discovery-client
+          uri: lb://cloud-discovery-client
+          predicates:
+            # 路径匹配，以 api 开头，直接配置是不生效的，看 filters 配置
+            - Path=/client/**
+          filters:
+            # 前缀过滤，默认配置下，我们的请求路径是 http://localhost:9000/myshop-service-consumer-item/** 这时会路由到指定的服务
+            # 此处配置去掉 1 个路径前缀，再配置上面的 Path=/api/**，就能按照 http://localhost:9000/api/** 的方式访问了
+            - StripPrefix=1
+logging:
+  config: classpath:logback-local.xml
+
+
