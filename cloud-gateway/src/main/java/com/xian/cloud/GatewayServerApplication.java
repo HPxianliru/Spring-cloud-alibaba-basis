@@ -9,7 +9,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 /**
  *
  * @Author: xlr
- * @Date: Created in 上午11:08 2019/11/10
+ * @Date: Created in 上午11:08 2019/11/4
  */
 @EnableDiscoveryClient
 @SpringBootApplication
