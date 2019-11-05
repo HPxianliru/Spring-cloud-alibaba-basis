@@ -16,15 +16,16 @@
         <module>cloud-discovery-client-common</module>
         <module>cloud-gateway-zuul</module>
         <module>cloud-gateway</module>
+        <module>cloud-monitor-admin</module>
     </modules>
 
 
-    <!--<parent>-->
-        <!--<groupId>org.springframework.boot</groupId>-->
-        <!--<artifactId>spring-boot-starter-parent</artifactId>-->
-        <!--<version>2.1.7.RELEASE</version>-->
-        <!--<relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
-    <!--</parent>-->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.7.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
 
     <properties>
         <!-- 基本属性 -->
@@ -37,6 +38,9 @@
         <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
         <spring-boot.version>2.1.7.RELEASE</spring-boot.version>
         <spring-platform.version>Cairo-SR8</spring-platform.version>
+        <spring-boot-admin.version>2.1.0</spring-boot-admin.version>
+
+
         <sentinel.version>1.6.1</sentinel.version>
     </properties>
 
@@ -77,6 +81,15 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <!-- spring boot admin -->
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-dependencies</artifactId>
+                <version>${spring-boot-admin.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -93,6 +106,10 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>

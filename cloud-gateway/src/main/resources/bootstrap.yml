@@ -46,3 +46,13 @@ logging:
   config: classpath:logback-local.xml
 
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+

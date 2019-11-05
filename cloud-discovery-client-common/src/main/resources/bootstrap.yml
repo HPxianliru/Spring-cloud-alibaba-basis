@@ -13,3 +13,13 @@ spring:
         file-extension: yaml
       discovery:
         server-addr: 47.99.209.72:8848
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS

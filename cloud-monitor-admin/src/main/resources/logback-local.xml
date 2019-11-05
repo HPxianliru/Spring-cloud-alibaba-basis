@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 从高到地低 OFF 、 FATAL 11、 ERROR 、 WARN 、 INFO 、 DEBUG 、 TRACE 、 ALL -->
+<!-- 日志输出规则  根据当前ROOT 级别，日志输出时，级别高于root默认的级别时  会输出 -->
+<!-- 以下  每个配置的 filter 是过滤掉输出文件里面，会出现高级别文件，依然出现低级别的日志信息，通过filter 过滤只记录本级别的日志-->
+<configuration debug="true">
+    <springProperty scop="context" name="project_name" source="spring.application.name"/>
+    <springProperty scop="context" name="active" source="spring.profiles.active"/>
+    <!-- 项目名称 -->
+    <property name="PROJECT_NAME" value='${project_name}' />
+
+    <!-- 定义日志文件 输入位置 -->
+    <property name="log_dir" value="../var/logs/${project_name}"/>
+    <!-- 日志最大的历史 30天 -->
+    <property name="maxHistory" value="30"/>
+
+    <!-- 文件最大 -->
+    <property name="FILESIZE" value="50MB"/>
+    <!-- 保存天数 -->
+    <property name="MAXHISTORY" value="15"/>
+    <!-- 环境 -->
+    <property name="PROFILE" value="dev"/>
+    <!-- 文件名称时间戳 -->
+    <timestamp key="DATETIME" datePattern="yyyy-MM-dd" />
+
+    <!-- ConsoleAppender 控制台输出日志 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+       <encoder charset="utf-8" class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+           <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%X{IP}] [%X{pid}] [%X{requestId}] [%X{version}] %highlight([%-5level] %logger{50} - %msg%n)</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+    </appender>
+
+
+    <!-- ERROR级别日志 -->
+    <!-- 滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件 RollingFileAppender-->
+    <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 过滤器，只记录WARN级别的日志 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <!-- 最常用的滚动策略，它根据时间来制定滚动策略.既负责滚动也负责出发滚动 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_HOME}/${PROJECT_NAME}/ERROR/%d{yyyy-MM-dd}.${active}%i.log</FileNamePattern>
+            <maxHistory>${MAXHISTORY}</maxHistory>
+            <maxFileSize>${FILESIZE}</maxFileSize>
+        </rollingPolicy>
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%X{IP}] [%X{pid}] [%X{requestId}] [%X{version}] %highlight([%-5level] %logger{50} - %msg%n)</pattern>
+        </encoder>
+    </appender>
+
+    <!-- WARN 级别日志 -->
+    <!-- 滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件 RollingFileAppender-->
+    <appender name="WARN" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 过滤器，只记录WARN级别的日志 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>WARN</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <!-- 最常用的滚动策略，它根据时间来制定滚动策略.既负责滚动也负责出发滚动 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_HOME}/${PROJECT_NAME}/WARN/%d{yyyy-MM-dd}.${active}%i.log</FileNamePattern>
+            <maxHistory>${MAXHISTORY}</maxHistory>
+            <maxFileSize>${FILESIZE}</maxFileSize>
+        </rollingPolicy>
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%X{IP}] [%X{pid}] [%X{requestId}] [%X{version}] %highlight([%-5level] %logger{50} - %msg%n)</pattern>
+        </encoder>
+    </appender>
+
+    <!-- DEBUG 输入到文件，按日期和文件大小 -->
+    <appender name="DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%X{IP}] [%X{pid}] [%X{requestId}] [%X{version}] %highlight([%-5level] %logger{50} - %msg%n)</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_HOME}/${PROJECT_NAME}/DEBUG/%d{yyyy-MM-dd}.${active}%i.log</FileNamePattern>
+            <maxHistory>${MAXHISTORY}</maxHistory>
+            <maxFileSize>${FILESIZE}</maxFileSize>
+        </rollingPolicy>
+    </appender>
+    <!-- INFO级别日志 appender -->
+    <appender name="INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 过滤器，只记录INFO级别的日志 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%X{IP}] [%X{pid}] [%X{requestId}] [%X{version}] %highlight([%-5level] %logger{50} - %msg%n)</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_HOME}/${PROJECT_NAME}/INFO/%d{yyyy-MM-dd}.${active}%i.log</FileNamePattern>
+            <maxHistory>${MAXHISTORY}</maxHistory>
+            <maxFileSize>${FILESIZE}</maxFileSize>
+        </rollingPolicy>
+    </appender>
+
+    <!-- root级别   DEBUG -->
+    <root level="DEBUG,STDOUT,INFO,WARN,ERROR">
+        <!-- 控制台输出 -->
+        <appender-ref ref="STDOUT"/>
+        <!-- 文件输出 -->
+        <appender-ref ref="ERROR"/>
+        <appender-ref ref="WARN"/>
+        <appender-ref ref="INFO"/>
+        <appender-ref ref="DEBUG"/>
+    </root>
+</configuration>

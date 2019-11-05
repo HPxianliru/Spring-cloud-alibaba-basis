@@ -3,7 +3,7 @@ spring:
     type: com.mysql.cj.jdbc.MysqlDataSource
     username: root
     password: root
-    url: jdbc:mysql://localhost:3308/cloud_xlr?characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false
+    url: jdbc:mysql://47.99.209.72:3308/cloud_xlr?characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false
   profiles:
     active: dev
   application:
@@ -63,4 +63,5 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
+
 
