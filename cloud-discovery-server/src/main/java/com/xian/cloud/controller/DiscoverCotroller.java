@@ -1,13 +1,15 @@
 package com.xian.cloud.controller;
 
+import com.xian.cloud.core.UserService;
+import com.xian.cloud.entity.UserEntity;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 
@@ -25,6 +27,9 @@ public class DiscoverCotroller {
     @Value( "${nacos.yaml.age}" )
     private String age;
 
+    @Autowired
+    private UserService userService;
+
     /**
      * 对外提供的服务 HTTP接口
      * @param name
@@ -41,6 +46,12 @@ public class DiscoverCotroller {
         InputStream in = request.getInputStream();
         String body = StreamUtils.copyToString(in, Charset.forName("UTF-8"));
         return "hello this is method POST";
+    }
+
+    @PostMapping("/log/update")
+    public boolean update(@RequestBody UserEntity entity){
+        entity.setPassWord("server");
+        return userService.updateById(entity);
     }
 
 }

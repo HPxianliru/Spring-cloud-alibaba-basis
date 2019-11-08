@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.xian.common.config.DruidDataSourceAutoConfigure,\
+com.xian.common.config.MybatisConfig

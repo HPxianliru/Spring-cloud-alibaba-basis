@@ -8,7 +8,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
+    <name>服务监控</name>
     <artifactId>cloud-monitor-admin</artifactId>
     <properties>
         <maven.deploy.skip>true</maven.deploy.skip>

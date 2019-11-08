@@ -13,10 +13,11 @@
     <description>spring cloud alibaba 教程总pom版本控制</description>
     <modules>
         <module>cloud-discovery-server</module>
-        <module>cloud-discovery-client-common</module>
+        <module>cloud-discovery-client</module>
         <module>cloud-gateway-zuul</module>
         <module>cloud-gateway</module>
         <module>cloud-monitor-admin</module>
+        <module>cloud-common</module>
     </modules>
 
 
@@ -42,10 +43,13 @@
 
 
         <sentinel.version>1.6.1</sentinel.version>
+        <mybatis-plus.version>3.1.2</mybatis-plus.version>
+        <druid.version>1.1.13</druid.version>
+        <hutool.version>4.5.16</hutool.version>
+
     </properties>
 
     <dependencyManagement>
-
         <dependencies>
             <!-- spring-cloud-alibaba 总依赖 -->
             <dependency>
@@ -92,6 +96,26 @@
                 <scope>import</scope>
             </dependency>
 
+            <!-- 自定义 common 基础依赖 声明-->
+            <dependency>
+                <groupId>com.xian.cloud</groupId>
+                <artifactId>cloud-common-db</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.xian.cloud</groupId>
+                <artifactId>cloud-common-fegin</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- hutool java工具类库  -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+
+
         </dependencies>
     </dependencyManagement>
 
@@ -101,23 +125,24 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
-
         <!-- nacos config -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-
     </dependencies>
 </project>
