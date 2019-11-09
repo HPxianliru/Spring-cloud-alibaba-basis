@@ -53,7 +53,7 @@ spring:
 
 
 logging:
-  config: classpath:logback-local.xml
+  # config: classpath:logback-local.xml
   level:
     org.springframework.cloud.gateway: debug
 
