@@ -1,4 +1,4 @@
-package com.xian.cloud.config;
+package com.xian.common.redis.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.connection.Message;

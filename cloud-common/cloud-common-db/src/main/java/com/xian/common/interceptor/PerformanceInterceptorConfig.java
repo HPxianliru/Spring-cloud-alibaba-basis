@@ -173,7 +173,7 @@ public class PerformanceInterceptorConfig extends PerformanceInterceptor {
                 throw new MybatisPlusException(" The SQL execution time is too large, please optimize ! ");
             }
         }
-        log.info(formatSql.toString());
+
         if(timeWran < timing){
             log.warn(" sql 超时  "+"\n"+"阈值 "+timeWran+"毫秒\n"+formatSql.toString());
         }

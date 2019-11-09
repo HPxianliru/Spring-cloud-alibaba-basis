@@ -1,4 +1,4 @@
-package com.xian.cloud.config;
+package com.xian.common.redis.config;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;

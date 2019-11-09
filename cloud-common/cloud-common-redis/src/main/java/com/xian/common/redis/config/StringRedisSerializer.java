@@ -1,4 +1,4 @@
-package com.xian.cloud.config;
+package com.xian.common.redis.config;
 
 import cn.hutool.core.lang.Assert;
 import com.alibaba.fastjson.JSON;

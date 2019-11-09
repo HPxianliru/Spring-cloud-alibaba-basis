@@ -3,7 +3,6 @@ package com.xian.cloud.controller;
 import com.xian.cloud.core.UserService;
 import com.xian.cloud.entity.UserEntity;
 import com.xian.cloud.fegin.FeginConfig;
-import io.seata.spring.annotation.GlobalTransactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
@@ -11,8 +10,6 @@ import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.Date;
 
 /**
  * @Author: xlr
@@ -50,7 +47,6 @@ public class DiscoveryClientController {
     }
 
     @GetMapping("/log/save")
-    @GlobalTransactional(timeoutMills = 300000, name = "spring-cloud-demo-tx")
     @Transactional
     public String save(){
         UserEntity entity = new UserEntity();
@@ -62,7 +58,6 @@ public class DiscoveryClientController {
     }
 
     @GetMapping("/log/update")
-    @GlobalTransactional(timeoutMills = 3000, name = "spring-cloud-demo-tx-update")
     @Transactional
     public String update(@RequestParam("id")  Long Id){
 

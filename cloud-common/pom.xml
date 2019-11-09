@@ -14,6 +14,10 @@
     <modules>
         <module>cloud-common-db</module>
         <module>cloud-common-fegin</module>
+        <module>cloud-common-redis</module>
+        <module>cloud-common-redis-tools</module>
+        <module>cloud-common-oss</module>
+        <module>cloud-common-rabbit</module>
     </modules>
     <packaging>pom</packaging>
 

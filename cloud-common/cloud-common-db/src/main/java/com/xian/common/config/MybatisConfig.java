@@ -13,7 +13,6 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 
 
 /**
@@ -42,6 +41,7 @@ public class MybatisConfig {
     @Bean
     @ConditionalOnMissingBean(SqlSessionTemplate.class)
     public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
+        log.info(" mybatisplus 加载完毕 ");
         return new SqlSessionTemplate(sqlSessionFactory);
     }
 
@@ -60,7 +60,6 @@ public class MybatisConfig {
      * mybatis-plus SQL执行效率插件【生产环境可以关闭】
      */
     @Bean
-    @Profile({"local","dev","test","staging"})
     public PerformanceInterceptor performanceInterceptor() {
         return new PerformanceInterceptorConfig();
     }

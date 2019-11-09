@@ -107,6 +107,28 @@
                 <artifactId>cloud-common-fegin</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.xian.cloud</groupId>
+                <artifactId>cloud-common-redis</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.xian.cloud</groupId>
+                <artifactId>cloud-common-redis-tools</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.xian.cloud</groupId>
+                <artifactId>cloud-common-oss</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.xian.cloud</groupId>
+                <artifactId>cloud-common-rabbit</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
             <!-- hutool java工具类库  -->
             <dependency>

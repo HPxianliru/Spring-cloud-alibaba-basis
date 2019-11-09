@@ -18,4 +18,10 @@ public class FeginConfig {
     Logger.Level feignLoggerLevel() {
         return Logger.Level.FULL;
     }
+
+    @Bean
+    public RequestHeaderInterceptor requestHeaderInterceptor() {
+        return new RequestHeaderInterceptor();
+    }
+
 }

@@ -1,7 +1,10 @@
 server:
   port: 9000
 
+
 spring:
+  main:
+    allow-bean-definition-overriding: true
   profiles:
     active: dev
   application:
@@ -15,6 +18,10 @@ spring:
     port: 6379
     database: 9
   cloud:
+    sentinel:
+      transport:
+        dashboard: localhost:8890
+      eager: true
     nacos:
       discovery:
         server-addr: 47.99.209.72:8848
@@ -56,7 +63,6 @@ logging:
   # config: classpath:logback-local.xml
   level:
     org.springframework.cloud.gateway: debug
-
 
 management:
   endpoints:

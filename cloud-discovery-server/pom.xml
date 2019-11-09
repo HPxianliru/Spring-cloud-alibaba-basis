@@ -30,5 +30,52 @@
             <groupId>com.xian.cloud</groupId>
             <artifactId>cloud-common-db</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.xian.cloud</groupId>
+            <artifactId>cloud-common-redis-tools</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.xian.cloud</groupId>
+            <artifactId>cloud-common-oss</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.xian.cloud</groupId>
+            <artifactId>cloud-common-rabbit</artifactId>
+        </dependency>
     </dependencies>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <delimiters>@</delimiters>
+                    <useDefaultDelimiters>false</useDefaultDelimiters>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>build-info</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
 </project>

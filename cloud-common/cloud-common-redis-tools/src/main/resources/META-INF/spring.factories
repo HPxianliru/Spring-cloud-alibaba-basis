@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.xian.common.redis.limit.config.RedisLimitAutoConfigurer,\
+com.xian.common.redis.lock.RedisLockAutoConfigurer

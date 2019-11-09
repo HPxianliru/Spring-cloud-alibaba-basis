@@ -6,11 +6,23 @@ spring:
     active: dev
   application:
     name: cloud-discovery-server
+  main:
+    allow-bean-definition-overriding: true
+  redis:
+    host: localhost
+    port: 6379
+    database: 9
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://47.99.209.72:3308/seata?characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false
+      url: jdbc:mysql://localhost:3308/seata?characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false
       username: root
       password: root
       initial-size: 10
@@ -45,6 +57,11 @@ spring:
           config:
             multi-statement-allow: true
   cloud:
+    alicloud:
+      access-key: xxxxxx
+      secret-key: xxxx
+      oss:
+        endpoint: oss-cn-beijing.aliyuncs.com
     nacos:
       config:
         server-addr: 47.99.209.72:8848
@@ -86,3 +103,17 @@ mybatis-plus:
     cache-enabled: true
     call-setters-on-nulls: true
     jdbc-type-for-null: 'null'
+
+# 自定义starter 开启开关
+cloud:
+  rabbit:
+    enabled: false
+  oss:
+    enabled: false
+  redis:
+    limit:
+      # true 开启redis 限流功能
+      enabled: true
+    lock:
+      # true 开启redis 分布式锁功能
+      enabled: true
