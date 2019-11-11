@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 /**
  * <Description> 路由刷新事件发布，与事件监听者
  *
- * @author xianliru@100tal.com
+ * @author xianliru@163.com
  * @version 1.0
  * @createDate 2019/10/30 15:27
  */
