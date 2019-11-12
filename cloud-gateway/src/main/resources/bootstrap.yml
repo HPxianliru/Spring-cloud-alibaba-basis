@@ -21,7 +21,15 @@ spring:
     sentinel:
       transport:
         dashboard: localhost:8890
+        port: 8719
       eager: true
+      datasource:
+        na:
+          nacos:
+            server-addr: 47.99.209.72:8848
+            groupId: DEFAULT_GROUP
+            dataId: ${spring.application.name}-${spring.profiles.active}-sentinel
+            rule-type: flow
     nacos:
       discovery:
         server-addr: 47.99.209.72:8848

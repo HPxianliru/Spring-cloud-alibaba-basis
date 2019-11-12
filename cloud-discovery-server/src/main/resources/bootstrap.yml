@@ -9,11 +9,11 @@ spring:
   main:
     allow-bean-definition-overriding: true
   redis:
-    host: localhost
+    host: 47.99.209.72
     port: 6379
     database: 9
   rabbitmq:
-    host: localhost
+    host: 47.99.209.72
     port: 5672
     username: guest
     password: guest
@@ -22,7 +22,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://localhost:3308/seata?characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false
+      url: jdbc:mysql://47.99.209.72:3308/seata?characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false
       username: root
       password: root
       initial-size: 10
@@ -113,7 +113,7 @@ cloud:
   redis:
     limit:
       # true 开启redis 限流功能
-      enabled: true
+      enabled: false
     lock:
       # true 开启redis 分布式锁功能
-      enabled: true
+      enabled: false

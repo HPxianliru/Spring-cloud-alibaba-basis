@@ -36,19 +36,31 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-spring-cloud-gateway-adapter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-datasource-nacos</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.xian.cloud</groupId>
             <artifactId>cloud-common-redis</artifactId>
             <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
         </dependency>
     </dependencies>
 
