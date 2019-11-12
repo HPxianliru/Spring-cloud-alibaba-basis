@@ -37,6 +37,7 @@ spring:
       config:
         server-addr: 47.99.209.72:8848
         file-extension: yaml
+        timeout: 6000
     gateway:
       discovery:
         locator:

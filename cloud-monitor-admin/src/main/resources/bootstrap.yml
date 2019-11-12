@@ -14,11 +14,14 @@ spring:
     nacos:
       discovery:
         server-addr: 47.99.209.72:8848
+        heart-beat-timeout: 6000
+        ip-delete-timeout: 3000
       # ${prefix}-${spring.profile.active}.${file-extension}
       config:
         server-addr: 47.99.209.72:8848
         file-extension: yaml
         group: ${spring.profiles.active}
+        timeout: 6000
 
 management:
   endpoints:
