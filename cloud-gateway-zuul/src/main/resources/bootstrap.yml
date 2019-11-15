@@ -1,3 +1,6 @@
+server:
+  port: 9083
+
 spring:
   datasource:
     type: com.mysql.cj.jdbc.MysqlDataSource
@@ -24,6 +27,8 @@ spring:
       config:
         server-addr: 47.99.209.72:8848
         file-extension: yaml
+      discovery:
+        server-addr: 47.99.209.72:8848
 
 zuul:
   host:
