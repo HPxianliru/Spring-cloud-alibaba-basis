@@ -62,6 +62,7 @@ spring:
           predicates:
             # 路径匹配，以 api 开头，直接配置是不生效的，看 filters 配置
             - Path=/client/**
+            - MyTime=true
           filters:
             # 前缀过滤，默认配置下，我们的请求路径是  这时会路由到指定的服务
             # 此处配置去掉 1 个路径前缀，再配置上面的 Path=/api/**，就能按照 http://localhost:9000/client/** 的方式访问了
