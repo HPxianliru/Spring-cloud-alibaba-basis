@@ -1,5 +1,5 @@
 server:
-  port: 9083
+  port: 9084
 
 spring:
   datasource:
@@ -8,7 +8,7 @@ spring:
     password: root
     url: jdbc:mysql://47.99.209.72:3308/cloud_xlr?characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false
   profiles:
-    active: dev
+    active: test
   application:
     name: gateway-zuul-server
   cloud:
@@ -69,4 +69,7 @@ management:
     health:
       show-details: ALWAYS
 
-
+feign:
+  sentinel:
+    # 开启sentinel fegin 支持
+    enabled: true

@@ -117,3 +117,7 @@ cloud:
     lock:
       # true 开启redis 分布式锁功能
       enabled: false
+
+
+logging:
+  config: classpath:logback-local.xml
