@@ -96,6 +96,7 @@ public class GatewayRoutesController {
      * @return
      */
     @GetMapping(value = "definition/add")
+    @SentinelResource(value = "definition:add")
     public RestResult addApiDefinition(@RequestParam("apiName") String apiName,@RequestParam("pattern")String pattern){
         Set<ApiDefinition> definitions = new HashSet<>();
         log.info("definition/add apiName:{},pattern:{}",apiName,pattern);

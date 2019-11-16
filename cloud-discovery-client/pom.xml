@@ -25,6 +25,22 @@
             <groupId>com.xian.cloud</groupId>
             <artifactId>cloud-common-db</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.xian.cloud</groupId>
+            <artifactId>cloud-common-fegin</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-datasource-nacos</artifactId>
+        </dependency>
+
     </dependencies>
 
 

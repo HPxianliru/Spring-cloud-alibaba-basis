@@ -1,5 +1,9 @@
 package com.xian.cloud.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
+import com.xian.cloud.common.handler.DiscoveryClientControllerBackHandler;
+import com.xian.cloud.common.handler.DiscoveryClientControllerFallBackHandler;
 import com.xian.cloud.core.UserService;
 import com.xian.cloud.entity.UserEntity;
 import com.xian.cloud.fegin.FeginConfig;
@@ -35,8 +39,15 @@ public class DiscoveryClientController {
      */
     @Autowired
     private LoadBalancerClient loadBalancerClient;
-
+    
     @RequestMapping(value = "/test",method = RequestMethod.GET)
+    @SentinelResource(
+            value = "client:test",
+            blockHandler = "defaultMessage",
+            fallback = "defaultMessage",
+            blockHandlerClass = DiscoveryClientControllerBackHandler.class,
+            fallbackClass = DiscoveryClientControllerFallBackHandler.class
+    )
     public String test() {
         ServiceInstance serviceInstance = loadBalancerClient.choose(CLOUD_DISCOVERY_SERVER);
         log.info( "ServiceInstance :{}",serviceInstance );
@@ -44,17 +55,38 @@ public class DiscoveryClientController {
         RestTemplate restTemplate = new RestTemplate();
         String result = restTemplate.getForObject(url, String.class);
         return "调用 " + url + ", 返回 : " + result;
+        
     }
 
+    @SentinelResource(
+            value = "client:fegin:test",
+            blockHandler = "defaultMessage",
+            fallback = "defaultMessage",
+            blockHandlerClass = DiscoveryClientControllerBackHandler.class,
+            fallbackClass = DiscoveryClientControllerFallBackHandler.class
+    )
+    @RequestMapping(value = "fegin/test",method = RequestMethod.GET)
+    public String feginTest() {
+        String result = serverService.hello( "fegin" );
+        return  " 返回 : " + result;
+    }
+    
+
     @GetMapping("/log/save")
-    @Transactional
+    @SentinelResource(
+            value = "client/log/save",
+            blockHandler = "defaultMessage",
+            fallback = "defaultMessage",
+            blockHandlerClass = DiscoveryClientControllerBackHandler.class,
+            fallbackClass = DiscoveryClientControllerFallBackHandler.class
+    )
     public String save(){
         UserEntity entity = new UserEntity();
         entity.setUsername("tom");
         entity.setPassWord("1232131");
         entity.setEmail("222@qq.com");
-        boolean save = userService.save(entity);
-        return save+"";
+        userService.saveTx(entity);
+        return "success";
     }
 
     @GetMapping("/log/update")

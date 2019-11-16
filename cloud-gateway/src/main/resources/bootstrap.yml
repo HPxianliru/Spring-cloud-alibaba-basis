@@ -1,7 +1,6 @@
 server:
   port: 9000
 
-
 spring:
   main:
     allow-bean-definition-overriding: true
@@ -70,7 +69,7 @@ spring:
 
 
 logging:
-   config: classpath:logback-local.xml
+  config: classpath:logback-local.xml
   level:
     org.springframework.cloud.gateway: debug
 
@@ -82,5 +81,6 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
+
 
 
