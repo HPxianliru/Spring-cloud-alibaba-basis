@@ -5,6 +5,7 @@ import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.xian.cloud.common.handler.DiscoveryClientControllerBackHandler;
 import com.xian.cloud.common.handler.DiscoveryClientControllerFallBackHandler;
 import com.xian.cloud.core.UserService;
+import com.xian.cloud.core.impl.UserServiceImpl;
 import com.xian.cloud.entity.UserEntity;
 import com.xian.cloud.fegin.FeginConfig;
 import lombok.extern.slf4j.Slf4j;
@@ -101,4 +102,13 @@ public class DiscoveryClientController {
         }
         throw new RuntimeException("执行失败");
     }
+
+
+    @GetMapping("user/service/save")
+    public String userServiceSaveTx(){
+        UserEntity entity = new UserEntity();
+        String result = userService.saveTx( entity );
+        return result;
+    }
+
 }

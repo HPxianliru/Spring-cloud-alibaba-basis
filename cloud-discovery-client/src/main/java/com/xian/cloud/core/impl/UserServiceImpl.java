@@ -1,6 +1,9 @@
 package com.xian.cloud.core.impl;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.xian.cloud.common.handler.DiscoveryClientControllerBackHandler;
+import com.xian.cloud.common.handler.DiscoveryClientControllerFallBackHandler;
 import com.xian.cloud.core.UserService;
 import com.xian.cloud.dao.UserDao;
 import com.xian.cloud.entity.UserEntity;
@@ -19,8 +22,21 @@ public class UserServiceImpl extends ServiceImpl<UserDao, UserEntity> implements
 
     @Override
     @Transactional
+
     public String saveTx(UserEntity entity) {
 
-        return "";
+        return saveTest();
     }
+
+    @SentinelResource(
+            value = "user:service:saveTx",
+            blockHandler = "saveTx",
+            fallback = "saveTx",
+            blockHandlerClass = DiscoveryClientControllerBackHandler.class,
+            fallbackClass = DiscoveryClientControllerFallBackHandler.class
+    )
+    private String saveTest(){
+        return "success";
+    }
+
 }

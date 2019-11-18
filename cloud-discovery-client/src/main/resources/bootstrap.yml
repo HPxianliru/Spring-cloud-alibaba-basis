@@ -75,7 +75,6 @@ management:
       show-details: ALWAYS
 
 
-
 #mybatis
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**/*.xml
@@ -101,3 +100,7 @@ mybatis-plus:
 
 logging:
   config: classpath:logback-local.xml
+ribbon:
+  eager-load:
+    enabled: true
+    clients: cloud-discovery-server

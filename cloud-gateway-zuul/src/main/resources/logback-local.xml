@@ -10,7 +10,7 @@
     <property name="PROJECT_NAME" value='${project_name}' />
 
     <!-- 定义日志文件 输入位置 -->
-    <property name="log_dir" value="/var/logs/${project_name}"/>
+    <property name="LOG_HOME" value="/var/logs/${project_name}"/>
     <!-- 日志最大的历史 30天 -->
     <property name="maxHistory" value="30"/>
 
@@ -45,7 +45,7 @@
         </filter>
         <!-- 最常用的滚动策略，它根据时间来制定滚动策略.既负责滚动也负责出发滚动 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <FileNamePattern>${LOG_HOME}/${PROJECT_NAME}/ERROR/%d{yyyy-MM-dd}.${active}%i.log</FileNamePattern>
+            <FileNamePattern>${LOG_HOME}/${PROJECT_NAME}/error/%d{yyyy-MM-dd}.${active}%i.log</FileNamePattern>
             <maxHistory>${MAXHISTORY}</maxHistory>
             <maxFileSize>${FILESIZE}</maxFileSize>
         </rollingPolicy>
@@ -65,7 +65,7 @@
         </filter>
         <!-- 最常用的滚动策略，它根据时间来制定滚动策略.既负责滚动也负责出发滚动 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <FileNamePattern>${LOG_HOME}/${PROJECT_NAME}/WARN/%d{yyyy-MM-dd}.${active}%i.log</FileNamePattern>
+            <FileNamePattern>${LOG_HOME}/${PROJECT_NAME}/warn/%d{yyyy-MM-dd}.${active}%i.log</FileNamePattern>
             <maxHistory>${MAXHISTORY}</maxHistory>
             <maxFileSize>${FILESIZE}</maxFileSize>
         </rollingPolicy>
@@ -86,7 +86,7 @@
             <onMismatch>DENY</onMismatch>
         </filter>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <FileNamePattern>${LOG_HOME}/${PROJECT_NAME}/DEBUG/%d{yyyy-MM-dd}.${active}%i.log</FileNamePattern>
+            <FileNamePattern>${LOG_HOME}/${PROJECT_NAME}/debug/%d{yyyy-MM-dd}.${active}%i.log</FileNamePattern>
             <maxHistory>${MAXHISTORY}</maxHistory>
             <maxFileSize>${FILESIZE}</maxFileSize>
         </rollingPolicy>
@@ -103,7 +103,7 @@
             <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%X{IP}] [%X{pid}] [%X{requestId}] [%X{version}] %highlight([%-5level] %logger{50} - %msg%n)</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <FileNamePattern>${LOG_HOME}/${PROJECT_NAME}/INFO/%d{yyyy-MM-dd}.${active}%i.log</FileNamePattern>
+            <FileNamePattern>${LOG_HOME}/${PROJECT_NAME}/info/%d{yyyy-MM-dd}.${active}%i.log</FileNamePattern>
             <maxHistory>${MAXHISTORY}</maxHistory>
             <maxFileSize>${FILESIZE}</maxFileSize>
         </rollingPolicy>
