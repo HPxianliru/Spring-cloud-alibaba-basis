@@ -9,5 +9,7 @@ import com.xian.cloud.entity.UserEntity;
  */
 public interface UserService extends IService<UserEntity> {
 
+
+
     String saveTx(UserEntity entity);
 }

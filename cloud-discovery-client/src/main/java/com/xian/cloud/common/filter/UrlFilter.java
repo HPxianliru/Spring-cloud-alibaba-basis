@@ -19,7 +19,7 @@ import java.io.IOException;
 public class UrlFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        log.warn("UrlFilter init.......");
+        log.info("UrlFilter init.......");
     }
 
     @Override
@@ -31,18 +31,17 @@ public class UrlFilter implements Filter {
         String authorization = req.getHeader("Authorization");
         String tom = req.getParameter("tom");
         String mike = req.getParameter("mike");
-        log.warn("过滤器：请求地址"+requestURI);
-        log.warn("uuid:{}",header);
-        log.warn("abc uuid:{}",abc);
-        log.warn("authorization :{}",authorization);
-        log.warn("tom :{}",tom);
-        log.warn("mike :{}",mike);
+        log.info("过滤器：请求地址"+requestURI);
+        log.info("uuid:{}",header);
+        log.info("abc uuid:{}",abc);
+        log.info("authorization :{}",authorization);
+        log.info("tom :{}",tom);
+        log.info("mike :{}",mike);
         filterChain.doFilter(servletRequest, servletResponse);
     }
 
     @Override
     public void destroy() {
-        log.warn(" 过滤器被销毁");
-
+        log.info(" 过滤器被销毁");
     }
 }

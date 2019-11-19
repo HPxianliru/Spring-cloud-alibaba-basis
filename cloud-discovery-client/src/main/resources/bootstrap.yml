@@ -88,7 +88,6 @@ management:
       show-details: ALWAYS
 
 
-
 #mybatis
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**/*.xml
@@ -115,7 +114,7 @@ mybatis-plus:
 logging:
   config: classpath:logback-local.xml
 
-#Ribbon的负载均衡策略
 ribbon:
   eager-load:
     enabled: true
+    clients: cloud-discovery-server

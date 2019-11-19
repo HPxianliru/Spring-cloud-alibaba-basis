@@ -10,7 +10,7 @@
     <property name="PROJECT_NAME" value='${project_name}' />
 
     <!-- 定义日志文件 输入位置 -->
-    <property name="log_dir" value="/var/logs/${project_name}"/>
+    <property name="LOG_HOME" value="/var/logs/${project_name}"/>
     <!-- 日志最大的历史 30天 -->
     <property name="maxHistory" value="30"/>
 

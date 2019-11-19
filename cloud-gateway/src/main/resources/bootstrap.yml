@@ -81,6 +81,8 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
-
-
+ribbon:
+  eager-load:
+    enabled: true
+    clients: cloud-discovery-server,cloud-discovery-client
 
