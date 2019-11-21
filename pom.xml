@@ -18,6 +18,8 @@
         <module>cloud-gateway</module>
         <module>cloud-monitor-admin</module>
         <module>cloud-common</module>
+        <module>cloud-security</module>
+        <module>cloud-user-center</module>
     </modules>
 
 
@@ -102,16 +104,31 @@
                 <artifactId>cloud-common-db</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
+            <dependency>
+                <artifactId>cloud-common-tools</artifactId>
+                <groupId>com.xian.cloud</groupId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <artifactId>cloud-common-swagger</artifactId>
+                <groupId>com.xian.cloud</groupId>
+                <version>${project.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>com.xian.cloud</groupId>
                 <artifactId>cloud-common-fegin</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>com.xian.cloud</groupId>
                 <artifactId>cloud-common-redis</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>com.xian.cloud</groupId>
                 <artifactId>cloud-common-redis-tools</artifactId>
@@ -137,11 +154,18 @@
                 <version>${hutool.version}</version>
             </dependency>
 
+            <!-- 子项目 API -->
+            <dependency>
+                <groupId>com.xian.cloud</groupId>
+                <artifactId>cloud-user-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
+
         <!-- nacos discovery -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>

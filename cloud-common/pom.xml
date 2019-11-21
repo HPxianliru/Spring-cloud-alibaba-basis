@@ -18,6 +18,8 @@
         <module>cloud-common-redis-tools</module>
         <module>cloud-common-oss</module>
         <module>cloud-common-rabbit</module>
+        <module>cloud-common-tools</module>
+        <module>cloud-common-swagger</module>
     </modules>
     <packaging>pom</packaging>
 

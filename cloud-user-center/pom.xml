@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>spring-cloud-alibaba-basis</artifactId>
+        <groupId>com.xian.cloud</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>cloud-user-center</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>cloud-user-api</module>
+        <module>cloud-user-common</module>
+        <module>cloud-user-service</module>
+        <module>cloud-user-web</module>
+    </modules>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.xian.cloud</groupId>
+            <artifactId>cloud-common-db</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.xian.cloud</groupId>
+            <artifactId>cloud-common-tools</artifactId>
+        </dependency>
+
+    </dependencies>
+</project>

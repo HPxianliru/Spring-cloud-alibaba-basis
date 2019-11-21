@@ -118,3 +118,28 @@ ribbon:
   eager-load:
     enabled: true
     clients: cloud-discovery-server
+
+
+# To disable Hystrix in Feign
+feign:
+  hystrix:
+    enabled: false
+  compression:
+    request:
+      # 请求或响应GZIP压缩
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 2048
+    response:
+      enabled: true
+
+# To set thread isolation to SEMAPHORE
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: THREAD
+
+
+

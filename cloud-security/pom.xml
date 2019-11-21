@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>spring-cloud-alibaba-basis</artifactId>
+        <groupId>com.xian.cloud</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>cloud-security</artifactId>
+
+
+    <properties>
+        <spring-social.version>1.1.6.RELEASE</spring-social.version>
+    </properties>
+
+    <dependencies>
+
+        <!-- spring-security 和 jwt -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.xian.cloud</groupId>
+            <artifactId>cloud-common-db</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.xian.cloud</groupId>
+            <artifactId>cloud-common-tools</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.xian.cloud</groupId>
+            <artifactId>cloud-common-redis-tools</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.xian.cloud</groupId>
+            <artifactId>cloud-user-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.7.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+        </dependency>
+
+    </dependencies>
+</project>
