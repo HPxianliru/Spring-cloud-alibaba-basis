@@ -22,9 +22,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -128,20 +125,6 @@ public class IndexController {
     }
 
     /**
-     **/
-    @RequestMapping("/info")
-    public RestResult info() {
-        Map<String, Object> map = new HashMap<>();
-        List<String> list = new ArrayList<>();
-        list.add("admin");
-        map.put("roles", list);
-        map.put("avatar", "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1561394014552&di=17b6c1233048e5276f48309b306c7699&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201804%2F29%2F20180429210111_gtsnf.jpg");
-        map.put("name", "Super Admin");
-        return RestResultBuilder.builder().success(map).build();
-    }
-
-    /**
-     * @Author 李号东
      * @Description 使用jwt前后分离 只需要前端清除token即可 暂时返回success
      * @Date 08:13 2019-06-22
      **/
