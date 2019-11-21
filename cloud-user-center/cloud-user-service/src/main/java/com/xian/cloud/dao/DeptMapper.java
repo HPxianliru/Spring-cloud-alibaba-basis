@@ -8,7 +8,7 @@ import com.xian.cloud.entity.DeptEntity;
  * 部门管理 Mapper 接口
  * </p>
  *
- * @author lihaodong
+ * @author xlr
  * @since 2019-04-21
  */
 public interface DeptMapper extends BaseMapper<DeptEntity> {

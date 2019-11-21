@@ -13,7 +13,7 @@ import java.util.List;
  * 菜单权限表 服务类
  * </p>
  *
- * @author lihaodong
+ * @author xlr
  * @since 2019-04-21
  */
 public interface MenuService extends IService<MenuEntity> {
@@ -39,9 +39,9 @@ public interface MenuService extends IService<MenuEntity> {
     List<MenuEntity> selectMenuTree(Integer uid);
 
     /**
-     * @Author 李号东
+     * @Author xlr
      * @Description 根据父id查询菜单
-     * @Date 18:43 2019-05-12
+     * @Date 18:43 2019-11-12
      **/
     MenuEntity getMenuById(Integer parentId);
 

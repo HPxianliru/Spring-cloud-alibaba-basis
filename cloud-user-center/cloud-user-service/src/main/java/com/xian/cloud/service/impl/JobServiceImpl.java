@@ -22,8 +22,8 @@ import java.util.stream.Collectors;
  * 岗位管理 服务实现类
  * </p>
  *
- * @author lihaodong
- * @since 2019-05-01
+ * @author xlr
+ * @since 2019-11-01
  */
 @Service
 public class JobServiceImpl extends ServiceImpl<JobMapper, JobEntity> implements JobService {

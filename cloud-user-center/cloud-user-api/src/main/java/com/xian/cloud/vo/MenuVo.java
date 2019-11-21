@@ -8,8 +8,8 @@ import java.util.List;
 /**
  * @Classname menuVo
  * @Description TODO
- * @Author 李号东 lihaodongmail@163.com
- * @Date 2019-05-05 16:38
+ * @Author xlr
+ * @Date 2019-11-05 16:38
  * @Version 1.0
  */
 @Data

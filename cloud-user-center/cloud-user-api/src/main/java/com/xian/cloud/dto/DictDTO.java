@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 /**
  * @Classname DictDTO
  * @Description 字典dto
- * @Author 李号东 lihaodongmail@163.com
- * @Date 2019-06-02 09:36
+ * @Author xlr
+ * @Date 2019-11-02 09:36
  * @Version 1.0
  */
 @Data

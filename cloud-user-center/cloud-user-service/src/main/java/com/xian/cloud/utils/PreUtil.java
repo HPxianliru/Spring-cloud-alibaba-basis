@@ -17,7 +17,7 @@ import java.util.Random;
 /**
  * @Classname PreUtil
  * @Description pre系统用户工具类
- * @Author 李号东 lihaodongmail@163.com
+ * @Author xlr
  * @Date 2019-04-27 16:52
  * @Version 1.0
  */

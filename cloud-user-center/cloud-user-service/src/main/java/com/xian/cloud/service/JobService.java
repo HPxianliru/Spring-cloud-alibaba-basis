@@ -11,8 +11,8 @@ import java.util.List;
  * 岗位管理 服务类
  * </p>
  *
- * @author lihaodong
- * @since 2019-05-01
+ * @author xlr
+ * @since 2019-11-01
  */
 public interface JobService extends IService<JobEntity> {
 
