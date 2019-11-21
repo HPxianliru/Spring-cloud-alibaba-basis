@@ -1,4 +1,4 @@
-package com.xian.cloud.security;
+package com.xian.common.enums;
 
 
 import lombok.Getter;

@@ -112,6 +112,12 @@
             </dependency>
 
             <dependency>
+                <groupId>com.xian.cloud</groupId>
+                <artifactId>cloud-common-security</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
                 <artifactId>cloud-common-swagger</artifactId>
                 <groupId>com.xian.cloud</groupId>
                 <version>${project.version}</version>

@@ -3,6 +3,8 @@ package com.xian.cloud.security;
 import cn.hutool.core.util.ObjectUtil;
 import com.xian.cloud.entity.UserEntity;
 import com.xian.cloud.user.fegin.UserService;
+import com.xian.common.enums.LoginType;
+import com.xian.common.security.PreSecurityUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

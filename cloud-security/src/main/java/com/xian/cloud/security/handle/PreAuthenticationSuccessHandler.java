@@ -1,8 +1,8 @@
 package com.xian.cloud.security.handle;
 
 
-import com.xian.cloud.security.LoginType;
-import com.xian.cloud.security.PreSecurityUser;
+import com.xian.common.enums.LoginType;
+import com.xian.common.security.PreSecurityUser;
 import com.xian.cloud.security.util.JwtUtil;
 import com.xian.cloud.security.util.SecurityUtil;
 import com.xian.common.model.RestResultBuilder;

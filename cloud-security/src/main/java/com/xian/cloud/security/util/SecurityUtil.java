@@ -1,7 +1,7 @@
 package com.xian.cloud.security.util;
 
 import com.alibaba.fastjson.JSON;
-import com.xian.cloud.security.PreSecurityUser;
+import com.xian.common.security.PreSecurityUser;
 import com.xian.common.exception.ValidateException;
 import com.xian.common.model.RestResult;
 import lombok.experimental.UtilityClass;

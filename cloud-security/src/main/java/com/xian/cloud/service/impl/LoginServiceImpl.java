@@ -1,7 +1,7 @@
 package com.xian.cloud.service.impl;
 
 import com.xian.cloud.dto.UserDTO;
-import com.xian.cloud.security.PreSecurityUser;
+import com.xian.common.security.PreSecurityUser;
 import com.xian.cloud.security.util.JwtUtil;
 import com.xian.cloud.service.LoginService;
 import com.xian.cloud.user.fegin.UserService;

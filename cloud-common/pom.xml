@@ -20,6 +20,7 @@
         <module>cloud-common-rabbit</module>
         <module>cloud-common-tools</module>
         <module>cloud-common-swagger</module>
+        <module>cloud-common-security</module>
     </modules>
     <packaging>pom</packaging>
 

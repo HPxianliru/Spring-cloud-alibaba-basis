@@ -1,5 +1,6 @@
-package com.xian.cloud.security;
+package com.xian.common.security;
 
+import com.xian.common.enums.LoginType;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;

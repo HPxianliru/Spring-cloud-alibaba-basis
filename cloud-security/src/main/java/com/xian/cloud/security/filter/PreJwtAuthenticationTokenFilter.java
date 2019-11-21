@@ -1,7 +1,7 @@
 package com.xian.cloud.security.filter;
 
 import cn.hutool.core.util.ObjectUtil;
-import com.xian.cloud.security.PreSecurityUser;
+import com.xian.common.security.PreSecurityUser;
 import com.xian.cloud.security.util.JwtUtil;
 import com.xian.cloud.user.fegin.UserService;
 import lombok.extern.slf4j.Slf4j;
