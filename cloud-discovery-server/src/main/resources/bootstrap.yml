@@ -69,6 +69,8 @@ spring:
         # 命名空间的使用
         #namespace: e071c3ab-b280-4ae7-a081-044fff5613ad
       discovery:
+        metadata:
+          version: 1
         server-addr: 47.99.209.72:8848
         # 命名空间的使用
         #namespace: e071c3ab-b280-4ae7-a081-044fff5613ad

@@ -109,6 +109,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
     }
 
     @Override
+
     public UserEntity findByUserInfoName(String username) {
         UserEntity sysUser = baseMapper.selectOne(Wrappers.<UserEntity>lambdaQuery()
                 .select(UserEntity::getUserId, UserEntity::getUsername, UserEntity::getPhone, UserEntity::getEmail, UserEntity::getPassword, UserEntity::getDeptId, UserEntity::getJobId, UserEntity::getAvatar)

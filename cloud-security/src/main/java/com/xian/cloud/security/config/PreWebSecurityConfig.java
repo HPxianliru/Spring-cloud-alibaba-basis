@@ -96,9 +96,7 @@ public class PreWebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/*.html","/**/*.html","/**/*.css","/**/*.js")
                 .permitAll()
                 .antMatchers("/captcha.jpg").anonymous()
-                .antMatchers("/sendCode/**").anonymous()
-                .antMatchers("/tenant/list").anonymous()
-                .antMatchers("/tenant/setting/**")
+                .antMatchers("/sendCode/**")
                 .permitAll()
                 // 访问/user 需要拥有admin权限
                 //  .antMatchers("/user").hasAuthority("ROLE_ADMIN")

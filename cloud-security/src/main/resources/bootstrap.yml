@@ -117,7 +117,7 @@ logging:
 ribbon:
   eager-load:
     enabled: true
-    clients: cloud-discovery-server
+    clients: cloud-discovery-server,cloud-discovery-client,cloud-user-center
 
 
 # To disable Hystrix in Feign

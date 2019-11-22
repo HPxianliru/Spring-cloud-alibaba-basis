@@ -48,6 +48,7 @@ public class SmsCodeAuthenticationToken extends AbstractAuthenticationToken {
     }
 
     /**
+     * 用于指示AbstractSecurityInterceptor是否应向颁发身份验证令牌AuthenticationManager。
      * @param isAuthenticated
      * @throws IllegalArgumentException
      */

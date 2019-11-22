@@ -137,7 +137,8 @@ logging:
 ribbon:
   eager-load:
     enabled: true
-    clients: cloud-discovery-server
+    clients: cloud-discovery-server,cloud-discovery-client,cloud-user-center,cloud-security
+
 
 
 # To disable Hystrix in Feign
@@ -152,5 +153,14 @@ feign:
       min-request-size: 2048
     response:
       enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 5000
 
 

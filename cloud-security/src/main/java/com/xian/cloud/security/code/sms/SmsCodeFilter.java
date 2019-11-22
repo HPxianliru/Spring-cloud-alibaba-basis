@@ -1,7 +1,8 @@
 package com.xian.cloud.security.code.sms;
 
 import cn.hutool.core.util.ObjectUtil;
-import com.xian.common.exception.BusinessException;
+import com.xian.cloud.security.exception.ValidateCodeException;
+import com.xian.cloud.security.handle.PreAuthenticationSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.AuthenticationException;
@@ -33,6 +34,9 @@ public class SmsCodeFilter extends OncePerRequestFilter {
 
     @Autowired
     private AuthenticationFailureHandler authenticationFailureHandler;
+
+    @Autowired
+    private PreAuthenticationSuccessHandler preAuthenticationSuccessHandler;
 
     private Set<String> urls = new HashSet<>();
 
@@ -72,13 +76,13 @@ public class SmsCodeFilter extends OncePerRequestFilter {
         String mobile = obtainMobile(request);
         Object redisCode = redisTemplate.opsForValue().get(mobile);
         if (smsCode == null || smsCode.isEmpty()) {
-            throw new BusinessException("短信验证码不能为空");
+            throw new ValidateCodeException("短信验证码不能为空");
         }
         if (ObjectUtil.isNull(redisCode)) {
-            throw new BusinessException("验证码已失效");
+            throw new ValidateCodeException("验证码已失效");
         }
         if (!smsCode.toLowerCase().equals(redisCode)) {
-            throw new BusinessException("短信验证码错误");
+            throw new ValidateCodeException("短信验证码错误");
         }
     }
 
