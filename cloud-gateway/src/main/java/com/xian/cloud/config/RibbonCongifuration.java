@@ -1,10 +1,13 @@
 package com.xian.cloud.config;
 
 import com.netflix.loadbalancer.IRule;
+import com.xian.cloud.filter.GatewayLoadBalancerClientFilter;
 import com.xian.common.rule.GrayscaleLoadBalancerRule;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
+import org.springframework.cloud.gateway.config.LoadBalancerProperties;
+import org.springframework.cloud.gateway.filter.LoadBalancerClientFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 
 /**
  * <Description>
@@ -17,11 +20,14 @@ import org.springframework.context.annotation.Primary;
 public class RibbonCongifuration {
 
 
-    @Bean
-    @Primary
-    IRule iRule(){
-        IRule rule =  new GrayscaleLoadBalancerRule();
 
-        return rule;
+    @Bean
+    LoadBalancerClientFilter userLoadBalancerClientFilter(LoadBalancerClient client, LoadBalancerProperties properties){
+        return new GatewayLoadBalancerClientFilter( client, properties);
+    }
+
+    @Bean
+    IRule grayscaleLoadBalancerRule(){
+        return new GrayscaleLoadBalancerRule();
     }
 }

@@ -4,8 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
 /**
@@ -15,8 +15,9 @@ import reactor.core.publisher.Mono;
  * @version 1.0
  * @createDate 2019/11/07 16:27
  */
-@Component
+
 @Slf4j
+@Configuration
 public class GatewayFilterConfiguration {
 
     @Bean

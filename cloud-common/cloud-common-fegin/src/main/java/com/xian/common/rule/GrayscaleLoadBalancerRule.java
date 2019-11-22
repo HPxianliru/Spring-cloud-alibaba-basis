@@ -7,7 +7,6 @@ import com.alibaba.nacos.api.naming.NamingService;
 import com.alibaba.nacos.api.naming.pojo.Instance;
 import com.netflix.client.config.IClientConfig;
 import com.netflix.loadbalancer.AbstractLoadBalancerRule;
-import com.netflix.loadbalancer.DynamicServerListLoadBalancer;
 import com.netflix.loadbalancer.Server;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -36,17 +35,20 @@ public class GrayscaleLoadBalancerRule extends AbstractLoadBalancerRule {
         //留空
     }
 
+    /**
+     * gateway 特殊性。需要设置key值内容知道你要转发的服务名称。
+     * @param key
+     * @return
+     */
     @Override
-    public Server choose(Object o) {
+    public Server choose(Object key) {
 
         try {
             String clusterName = this.nacosDiscoveryProperties.getClusterName();
-            DynamicServerListLoadBalancer loadBalancer = (DynamicServerListLoadBalancer)this.getLoadBalancer();
-            String name = loadBalancer.getName();
             NamingService namingService = this.nacosDiscoveryProperties.namingServiceInstance();
-            List<Instance> instances = namingService.selectInstances(name, true);
+            List<Instance> instances = namingService.selectInstances(key.toString(), true);
             if (CollectionUtils.isEmpty(instances)) {
-                log.warn("no instance in service {}", name);
+                log.warn("no instance in service {}", key);
                 return null;
             } else {
                 List<Instance> instancesToChoose = instances;
@@ -57,7 +59,7 @@ public class GrayscaleLoadBalancerRule extends AbstractLoadBalancerRule {
                     if (!CollectionUtils.isEmpty(sameClusterInstances)) {
                         instancesToChoose = sameClusterInstances;
                     } else {
-                        log.warn("A cross-cluster call occurs，name = {}, clusterName = {}, instance = {}", new Object[]{name, clusterName, instances});
+                        log.warn("A cross-cluster call occurs，name = {}, clusterName = {}, instance = {}", new Object[]{key.toString(), clusterName, instances});
                     }
                 }
 
