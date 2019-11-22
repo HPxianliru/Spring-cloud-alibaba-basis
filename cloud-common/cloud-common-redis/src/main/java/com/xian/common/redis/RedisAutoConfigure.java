@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xian.common.redis.config.StringRedisSerializer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cache.interceptor.KeyGenerator;
@@ -80,7 +79,6 @@ public class RedisAutoConfigure {
 
     //1.项目启动时此方法先被注册成bean被spring管理
     @Bean
-    @ConditionalOnMissingBean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
         RedisTemplate template = new RedisTemplate();
         template.setConnectionFactory(factory);
@@ -98,7 +96,6 @@ public class RedisAutoConfigure {
 
     //1.项目启动时此方法先被注册成bean被spring管理
     @Bean("stringRedisTemplate")
-    @ConditionalOnMissingBean
     public StringRedisTemplate stringRedisTemplate(RedisConnectionFactory factory) {
         StringRedisTemplate template = new StringRedisTemplate();
         template.setConnectionFactory(factory);
