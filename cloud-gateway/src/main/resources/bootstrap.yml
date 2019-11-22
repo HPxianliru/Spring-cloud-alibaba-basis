@@ -52,9 +52,33 @@ spring:
             # 路径匹配，以 api 开头，直接配置是不生效的，看 filters 配置
             - Path=/server/**
           filters:
+
             # 前缀过滤，默认配置下，我们的请求路径是  这时会路由到指定的服务
             # 此处配置去掉 1 个路径前缀，再配置上面的 Path=/api/**，就能按照 http://localhost:9000/server/** 的方式访问了
             - StripPrefix=1
+            #重试
+#            retries：应尝试的重试次数
+#            statuses：应重试的HTTP状态代码，用表示 org.springframework.http.HttpStatus
+#            methods：应重试的HTTP方法，使用表示 org.springframework.http.HttpMethod
+#            series：要重试的一系列状态代码，用表示 org.springframework.http.HttpStatus.Series
+#            exceptions：应重试引发的异常列表
+#            backoff：为重试配置了指数补偿。重试的退避间隔之后执行firstBackoff * (factor ^ n)，其中n是迭代。如果maxBackoff已配置，则应用的最大退避将被限制为maxBackoff。如果basedOnPreviousValue为true，将使用计算退避prevBackoff * factor。
+#            Retry如果启用了以下默认过滤器配置：
+#            retries - 3次
+#            series — 5XX系列
+#            methods — GET方法
+#            exceptions —  IOException和TimeoutException
+#            backoff —禁用
+            - name: Retry
+              args:
+                retries: 1
+                statuses: BAD_GATEWAY
+                backoff:
+                  firstBackoff: 200ms
+                  maxBackoff: 500ms
+                  factor: 1
+                  basedOnPreviousValue: false
+                  exceptions: TimeoutException
         - id: cloud-discovery-client
           uri: lb://cloud-discovery-client
           predicates:

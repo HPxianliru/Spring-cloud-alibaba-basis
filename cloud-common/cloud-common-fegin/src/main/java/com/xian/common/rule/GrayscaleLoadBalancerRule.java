@@ -13,12 +13,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * <Description>
+ * <Description> 自定义负载规则。根据version做请求的转发。同时整合nacos 控制台的随机权重设置。
  *
  * @author xianliru@163.com
  * @version 1.0
@@ -44,25 +43,42 @@ public class GrayscaleLoadBalancerRule extends AbstractLoadBalancerRule {
     public Server choose(Object key) {
 
         try {
+            GrayscaleEntity grayscale = (GrayscaleEntity) key;
+            String version = grayscale.getVersion();
             String clusterName = this.nacosDiscoveryProperties.getClusterName();
             NamingService namingService = this.nacosDiscoveryProperties.namingServiceInstance();
-            List<Instance> instances = namingService.selectInstances(key.toString(), true);
-            if (CollectionUtils.isEmpty(instances)) {
-                log.warn("no instance in service {}", key);
+            List<Instance> instances = namingService.selectInstances(grayscale.getServerName(), true);
+            //进行按版本分组排序
+            Map<String,List<Instance>> versionMap = getInstanceByScreen(instances);
+
+            if(versionMap.isEmpty()){
+                log.warn("no instance in service {}", grayscale);
+            }
+            //如果version 未传值使用最低版本服务
+            if(StringUtils.isBlank( version )){
+                version = getFirst( versionMap.keySet() );
+            }
+
+            List <Instance> instanceList = versionMap.get( version );
+
+            if (CollectionUtils.isEmpty(instanceList)) {
+                log.warn("no instance in service {}", grayscale.getServerName());
                 return null;
             } else {
-                List<Instance> instancesToChoose = instances;
+                List<Instance> instancesToChoose = instanceList;
+                //进行cluster-name分组筛选
+                // TODO 思考如果cluster-name 节点全部挂掉。是不是可以请求其他的分组的服务？可以根据情况在定制一份规则出来
                 if (StringUtils.isNotBlank(clusterName)) {
-                    List<Instance> sameClusterInstances = (List)instances.stream().filter((instancex) -> {
+                    List<Instance> sameClusterInstances = (List)instanceList.stream().filter((instancex) -> {
                         return Objects.equals(clusterName, instancex.getClusterName());
                     }).collect(Collectors.toList());
                     if (!CollectionUtils.isEmpty(sameClusterInstances)) {
                         instancesToChoose = sameClusterInstances;
                     } else {
-                        log.warn("A cross-cluster call occurs，name = {}, clusterName = {}, instance = {}", new Object[]{key.toString(), clusterName, instances});
+                        log.warn("A cross-cluster call occurs，name = {}, clusterName = {}, instance = {}", new Object[]{grayscale.getServerName(), clusterName, instances});
                     }
                 }
-
+                //按随机nacos权重获取
                 Instance instance = ExtendBalancer.getHostByRandomWeight2(instancesToChoose);
                 return new NacosServer(instance);
             }
@@ -71,4 +87,38 @@ public class GrayscaleLoadBalancerRule extends AbstractLoadBalancerRule {
             return null;
         }
     }
+
+
+    private Map<String,List<Instance>> getInstanceByScreen(List<Instance> instances){
+
+        Map<String,List<Instance>> versionMap = new HashMap <>( instances.size() );
+        instances.stream().forEach( instance -> {
+            String version = instance.getMetadata().get( GrayscaleConstant.GRAYSCALE_VERSION );
+            List <Instance> versions = versionMap.get( version );
+            if(versions == null){
+                versions = new ArrayList <>(  );
+            }
+            versions.add( instance );
+            versionMap.put( version,versions );
+        } );
+        return versionMap;
+    }
+    
+    private String getFirst(Set <String> keys){
+        List <String> list = sortVersion( keys );
+        return list.get( 0 );
+    }
+
+    private String getLast(Set <String> keys){
+        List <String> list = sortVersion( keys );
+        return list.get( list.size()-1 );
+    }
+    
+    
+    private List<String > sortVersion(Set <String> keys){
+        List<String > list = new ArrayList <>( keys );
+        Collections.sort(list);
+        return list;
+    }
+    
 }
