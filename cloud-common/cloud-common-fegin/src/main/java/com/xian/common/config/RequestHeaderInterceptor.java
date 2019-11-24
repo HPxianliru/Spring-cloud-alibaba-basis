@@ -1,5 +1,6 @@
 package com.xian.common.config;
 
+import com.xian.common.rule.GrayscaleConstant;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +34,9 @@ public class RequestHeaderInterceptor implements RequestInterceptor {
                 String values = request.getHeader(name);
                 //TODO 注意！！！ 不要全量都赋值到header，只选择我们需要的参数传递到下游服务。 在有些场景header 会导致异常出现。
                 if("Authorization".equals(name)){
+                    template.header(name, values);
+                }
+                if(GrayscaleConstant.GRAYSCALE_VERSION.equals( name )){
                     template.header(name, values);
                 }
             }

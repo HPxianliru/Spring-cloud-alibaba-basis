@@ -1,6 +1,7 @@
 package com.xian.cloud;
 
-import com.alibaba.csp.sentinel.annotation.aspectj.SentinelResourceAspect;
+import com.netflix.loadbalancer.IRule;
+import com.xian.common.rule.GrayscaleLoadBalancerRule;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
@@ -22,8 +23,9 @@ public class DiscoveryClientApplication {
         SpringApplication.run(DiscoveryClientApplication.class, args);
     }
 
+
     @Bean
-    public SentinelResourceAspect sentinelResourceAspect() {
-        return new SentinelResourceAspect();
+    IRule rule(){
+        return new GrayscaleLoadBalancerRule();
     }
 }

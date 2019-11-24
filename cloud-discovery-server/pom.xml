@@ -43,6 +43,10 @@
             <groupId>com.xian.cloud</groupId>
             <artifactId>cloud-common-rabbit</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.xian.cloud</groupId>
+            <artifactId>cloud-common-fegin</artifactId>
+        </dependency>
     </dependencies>
 
 

@@ -1,5 +1,7 @@
 package com.xian.cloud.common.filter;
 
+import com.xian.common.rule.GrayscaleConstant;
+import com.xian.common.utils.ThreadLocalUtils;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.*;
@@ -28,6 +30,7 @@ public class UrlFilter implements Filter {
         String requestURI = req.getRequestURI();
         String header = req.getHeader("X-Foo");
         String abc = req.getHeader("X-ABC");
+        String version = req.getHeader( GrayscaleConstant.GRAYSCALE_VERSION );
         String authorization = req.getHeader("Authorization");
         String tom = req.getParameter("tom");
         String mike = req.getParameter("mike");
@@ -38,11 +41,13 @@ public class UrlFilter implements Filter {
         log.warn("tom :{}",tom);
         log.warn("mike :{}",mike);
         filterChain.doFilter(servletRequest, servletResponse);
+        ThreadLocalUtils.set( GrayscaleConstant.GRAYSCALE_VERSION, version);
     }
 
     @Override
     public void destroy() {
         log.warn(" 过滤器被销毁");
+        ThreadLocalUtils.remove();
 
     }
 }

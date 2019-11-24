@@ -1,5 +1,5 @@
 server:
-  port: 9011
+  port: 9010
 
 spring:
   profiles:
@@ -51,6 +51,8 @@ spring:
         file-extension: yaml
       discovery:
         server-addr: 47.99.209.72:8848
+        metadata:
+          version: 3
     sentinel:
       filter:
         # sentienl 默认生效，本地调试false

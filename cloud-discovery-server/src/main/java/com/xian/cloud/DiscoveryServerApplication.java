@@ -1,9 +1,12 @@
 package com.xian.cloud;
 
+import com.netflix.loadbalancer.IRule;
+import com.xian.common.rule.GrayscaleLoadBalancerRule;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.context.annotation.Bean;
 
 /**
  * @Author: xlr
@@ -19,4 +22,9 @@ public class DiscoveryServerApplication {
         SpringApplication.run(DiscoveryServerApplication.class, args);
     }
 
+
+    @Bean
+    IRule rule(){
+        return new GrayscaleLoadBalancerRule();
+    }
 }

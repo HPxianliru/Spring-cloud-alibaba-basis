@@ -2,7 +2,7 @@ package com.xian.cloud.config;
 
 import com.netflix.loadbalancer.IRule;
 import com.xian.cloud.filter.GatewayLoadBalancerClientFilter;
-import com.xian.common.rule.GrayscaleLoadBalancerRule;
+import com.xian.common.rule.GrayscaleGatewayLoadBalancerRule;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.cloud.gateway.config.LoadBalancerProperties;
 import org.springframework.cloud.gateway.filter.LoadBalancerClientFilter;
@@ -28,6 +28,6 @@ public class RibbonCongifuration {
 
     @Bean
     IRule grayscaleLoadBalancerRule(){
-        return new GrayscaleLoadBalancerRule();
+        return new GrayscaleGatewayLoadBalancerRule();
     }
 }
