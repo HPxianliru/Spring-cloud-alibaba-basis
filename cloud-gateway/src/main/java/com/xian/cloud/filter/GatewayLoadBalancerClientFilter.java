@@ -1,7 +1,7 @@
 package com.xian.cloud.filter;
 
 import com.xian.common.rule.GrayscaleConstant;
-import com.xian.common.rule.GrayscaleEntity;
+import com.xian.common.rule.GrayscaleProperties;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.cloud.gateway.config.LoadBalancerProperties;
@@ -33,7 +33,7 @@ public class GatewayLoadBalancerClientFilter extends LoadBalancerClientFilter {
             HttpHeaders headers = exchange.getRequest().getHeaders();
             String version = headers.getFirst( GrayscaleConstant.GRAYSCALE_VERSION );
             String serviceId = ((URI) exchange.getAttribute(GATEWAY_REQUEST_URL_ATTR)).getHost();
-            GrayscaleEntity build = GrayscaleEntity.builder().version( version ).serverName( serviceId ).build();
+            GrayscaleProperties build = GrayscaleProperties.builder().version( version ).serverName( serviceId ).build();
             //这里使用服务ID 和 version 做为选择服务实例的key
             //TODO 这里也可以根据实际业务情况做自己的对象封装
             return client.choose(serviceId,build);

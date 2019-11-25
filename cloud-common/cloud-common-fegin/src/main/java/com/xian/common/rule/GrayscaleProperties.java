@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
+ *
  * @Author: xlr
  * @Date: Created in 3:02 AM 2019/11/23
  */
@@ -15,10 +16,17 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Builder
 @NoArgsConstructor
-public class GrayscaleEntity implements Serializable {
+public class GrayscaleProperties implements Serializable {
 
     private String version;
 
     private String serverName;
+
+    private String serverGroup;
+
+    private String active;
+
+    private double weight = 1.0D;
+
 
 }

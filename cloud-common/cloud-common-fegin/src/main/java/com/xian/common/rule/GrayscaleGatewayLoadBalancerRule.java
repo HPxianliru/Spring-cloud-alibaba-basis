@@ -43,7 +43,7 @@ public class GrayscaleGatewayLoadBalancerRule extends AbstractGrayscalLoadBalanc
     public Server choose(Object key) {
 
         try {
-            GrayscaleEntity grayscale = (GrayscaleEntity) key;
+            GrayscaleProperties grayscale = (GrayscaleProperties) key;
             String version = grayscale.getVersion();
             String clusterName = this.nacosDiscoveryProperties.getClusterName();
             NamingService namingService = this.nacosDiscoveryProperties.namingServiceInstance();
