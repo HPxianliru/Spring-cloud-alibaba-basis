@@ -101,7 +101,7 @@
             <!-- 自定义 common 基础依赖 声明-->
             <dependency>
                 <groupId>com.xian.cloud</groupId>
-                <artifactId>cloud-common-db</artifactId>
+                <artifactId>cloud-common-db-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -125,31 +125,31 @@
 
             <dependency>
                 <groupId>com.xian.cloud</groupId>
-                <artifactId>cloud-common-fegin</artifactId>
+                <artifactId>cloud-common-fegin-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.xian.cloud</groupId>
-                <artifactId>cloud-common-redis</artifactId>
+                <artifactId>cloud-common-redis-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.xian.cloud</groupId>
-                <artifactId>cloud-common-redis-tools</artifactId>
+                <artifactId>cloud-common-redis-tools-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.xian.cloud</groupId>
-                <artifactId>cloud-common-oss</artifactId>
+                <artifactId>cloud-common-oss-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.xian.cloud</groupId>
-                <artifactId>cloud-common-rabbit</artifactId>
+                <artifactId>cloud-common-rabbit-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

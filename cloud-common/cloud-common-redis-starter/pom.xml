@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cloud-common-redis</artifactId>
+    <artifactId>cloud-common-redis-starter</artifactId>
     <name>redis连接配置封装</name>
 
 

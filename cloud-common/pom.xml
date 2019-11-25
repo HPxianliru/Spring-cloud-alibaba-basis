@@ -12,12 +12,12 @@
     <artifactId>cloud-common</artifactId>
     <name>封装工具starter</name>
     <modules>
-        <module>cloud-common-db</module>
-        <module>cloud-common-fegin</module>
-        <module>cloud-common-redis</module>
-        <module>cloud-common-redis-tools</module>
-        <module>cloud-common-oss</module>
-        <module>cloud-common-rabbit</module>
+        <module>cloud-common-db-starter</module>
+        <module>cloud-common-fegin-starter</module>
+        <module>cloud-common-redis-starter</module>
+        <module>cloud-common-redis-tools-starter</module>
+        <module>cloud-common-oss-starter</module>
+        <module>cloud-common-rabbit-starter</module>
         <module>cloud-common-tools</module>
         <module>cloud-common-swagger</module>
         <module>cloud-common-security</module>

@@ -19,7 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>com.xian.cloud</groupId>
-            <artifactId>cloud-common-db</artifactId>
+            <artifactId>cloud-common-db-starter</artifactId>
         </dependency>
 
         <dependency>

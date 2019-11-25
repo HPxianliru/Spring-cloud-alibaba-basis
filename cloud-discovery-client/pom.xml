@@ -23,12 +23,12 @@
 
         <dependency>
             <groupId>com.xian.cloud</groupId>
-            <artifactId>cloud-common-db</artifactId>
+            <artifactId>cloud-common-db-starter</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.xian.cloud</groupId>
-            <artifactId>cloud-common-fegin</artifactId>
+            <artifactId>cloud-common-fegin-starter</artifactId>
         </dependency>
 
         <dependency>

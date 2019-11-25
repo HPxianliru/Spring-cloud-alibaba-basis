@@ -64,7 +64,7 @@
         </dependency>
         <dependency>
             <groupId>com.xian.cloud</groupId>
-            <artifactId>cloud-common-fegin</artifactId>
+            <artifactId>cloud-common-fegin-starter</artifactId>
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>

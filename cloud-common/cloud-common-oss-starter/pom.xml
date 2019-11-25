@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cloud-common-oss</artifactId>
+    <artifactId>cloud-common-oss-starter</artifactId>
     <name>ali oss服务</name>
 
     <dependencies>
