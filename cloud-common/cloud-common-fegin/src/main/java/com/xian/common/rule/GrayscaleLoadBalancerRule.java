@@ -19,11 +19,13 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
+ * fegin 负载均衡。在获取到我们想设置的对象之后，我们还可以设置 服务、用户、角色等各个维度的黑白名单，限制、转发、等策略，具体的使用场景还得需要结合工作中的实际使用场景。
+ * 这里只是提供一个简单的思路。希望看到这个注释的人。能够有举一反三的能力，定制自己的规则。
  * @Author: xlr
  * @Date: Created in 12:19 PM 2019/11/24
  */
 @Slf4j
-public class GrayscaleLoadBalancerRule extends GrayscalAbstractLoadBalancerRule {
+public class GrayscaleLoadBalancerRule extends AbstractGrayscalLoadBalancerRule {
 
     @Autowired
     private NacosDiscoveryProperties nacosDiscoveryProperties;
@@ -40,7 +42,7 @@ public class GrayscaleLoadBalancerRule extends GrayscalAbstractLoadBalancerRule 
      */
     @Override
     public Server choose(Object key) {
-
+        log.info("GrayscaleLoadBalancerRule 执行 choose方法 ，参数 key: {}",key);
         try {
             String clusterName = this.nacosDiscoveryProperties.getClusterName();
             DynamicServerListLoadBalancer loadBalancer = (DynamicServerListLoadBalancer)this.getLoadBalancer();

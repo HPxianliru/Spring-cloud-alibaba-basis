@@ -14,7 +14,7 @@ import java.util.*;
  */
 @Slf4j
 @Data
-public abstract class GrayscalAbstractLoadBalancerRule extends AbstractLoadBalancerRule {
+public abstract class AbstractGrayscalLoadBalancerRule extends AbstractLoadBalancerRule {
 
     /**
      * asc 正序 反之desc 倒叙

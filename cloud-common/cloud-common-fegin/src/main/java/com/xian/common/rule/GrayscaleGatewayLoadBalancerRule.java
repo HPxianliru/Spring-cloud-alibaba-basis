@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
  * @createDate 2019/11/22 19:15
  */
 @Slf4j
-public class GrayscaleGatewayLoadBalancerRule extends GrayscalAbstractLoadBalancerRule {
+public class GrayscaleGatewayLoadBalancerRule extends AbstractGrayscalLoadBalancerRule {
 
     @Autowired
     private NacosDiscoveryProperties nacosDiscoveryProperties;
