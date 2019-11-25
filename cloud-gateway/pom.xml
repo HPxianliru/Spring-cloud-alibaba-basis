@@ -54,7 +54,7 @@
 
         <dependency>
             <groupId>com.xian.cloud</groupId>
-            <artifactId>cloud-common-redis</artifactId>
+            <artifactId>cloud-common-redis-starter</artifactId>
             <version>${project.version}</version>
         </dependency>
 
