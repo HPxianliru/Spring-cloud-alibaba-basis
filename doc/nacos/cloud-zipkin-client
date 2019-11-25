@@ -1,0 +1,12 @@
+spring:
+  zipkin:
+    locator:
+      discovery:
+        enabled: true
+    base-url: http://cloud-zipkin-server
+  sleuth:
+    sampler:
+      # 默认是0.1,上报10%的数据。1.0上报全部数据
+      probability: 1.0
+    web:
+      skip-pattern: (^cleanup.*|.+favicon.*)

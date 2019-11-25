@@ -1,0 +1,39 @@
+server:
+  port: 5000
+
+spring:
+  application:
+    name: cloud-zipkin-server
+  profiles:
+    active: dev
+  #配置中心
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 47.99.209.72:8848
+      # ${prefix}-${spring.profile.active}.${file-extension}
+      config:
+        server-addr: 47.99.209.72:8848
+        file-extension: yaml
+        timeout: 6000
+  # 数据源
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://47.99.209.72:3308/zipkin?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+
+  main:
+    allow-bean-definition-overriding: true
+
+management:
+  metrics:
+    web:
+      server:
+        auto-time-requests: false
+zipkin:
+  storage:
+    type: mysql
+sleuth:
+  enabled: true

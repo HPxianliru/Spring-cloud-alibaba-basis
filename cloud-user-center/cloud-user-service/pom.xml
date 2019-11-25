@@ -26,7 +26,7 @@
 
         <dependency>
             <groupId>com.xian.cloud</groupId>
-            <artifactId>cloud-common-redis-tools</artifactId>
+            <artifactId>cloud-common-redis-tools-starter</artifactId>
             <version>${project.version}</version>
         </dependency>
 

@@ -20,6 +20,7 @@
         <module>cloud-common</module>
         <module>cloud-security</module>
         <module>cloud-user-center</module>
+        <module>cloud-monitor-zipkin</module>
     </modules>
 
 
@@ -48,7 +49,9 @@
         <mybatis-plus.version>3.1.2</mybatis-plus.version>
         <druid.version>1.1.13</druid.version>
         <hutool.version>4.5.16</hutool.version>
-
+        <!-- zipkin -->
+        <zipkin.version>2.12.2</zipkin.version>
+        <zipkin-storage-mysql.version>2.8.4</zipkin-storage-mysql.version>
     </properties>
 
     <dependencyManagement>

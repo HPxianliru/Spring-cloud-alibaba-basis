@@ -2,7 +2,7 @@ package com.xian.cloud.security.code.sms;
 
 import cn.hutool.core.util.ObjectUtil;
 import com.xian.cloud.security.exception.ValidateCodeException;
-import com.xian.cloud.security.handle.PreAuthenticationSuccessHandler;
+import com.xian.cloud.security.handle.CloudAuthenticationSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.AuthenticationException;
@@ -36,7 +36,7 @@ public class SmsCodeFilter extends OncePerRequestFilter {
     private AuthenticationFailureHandler authenticationFailureHandler;
 
     @Autowired
-    private PreAuthenticationSuccessHandler preAuthenticationSuccessHandler;
+    private CloudAuthenticationSuccessHandler preAuthenticationSuccessHandler;
 
     private Set<String> urls = new HashSet<>();
 

@@ -3,7 +3,7 @@ server:
 
 spring:
   redis:
-    host: localhost
+    host: 47.99.209.72
     port: 6379
     database: 10
     password:
@@ -96,8 +96,17 @@ spring:
 #            GW_FLOW("gw-flow", "com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayFlowRule"),
 #            GW_API_GROUP("gw-api-group", "com.alibaba.csp.sentinel.adapter.gateway.common.api.ApiDefinition");
             rule-type: flow
-
-
+  zipkin:
+    locator:
+      discovery:
+        enabled: true
+    base-url: http://cloud-zipkin-server
+  sleuth:
+    sampler:
+      # 默认是0.1 上报10%的数据。1.0上报全部数据
+      probability: 1.0
+    web:
+      skip-pattern: (^cleanup.*|.+favicon.*)
 management:
   endpoints:
     web:

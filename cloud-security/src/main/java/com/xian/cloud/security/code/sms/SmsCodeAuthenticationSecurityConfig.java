@@ -2,8 +2,8 @@ package com.xian.cloud.security.code.sms;
 
 
 import com.xian.cloud.security.UserDetailsServiceImpl;
-import com.xian.cloud.security.handle.PreAuthenticationFailureHandler;
-import com.xian.cloud.security.handle.PreAuthenticationSuccessHandler;
+import com.xian.cloud.security.handle.CloudAuthenticationFailureHandler;
+import com.xian.cloud.security.handle.CloudAuthenticationSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
@@ -27,10 +27,10 @@ public class SmsCodeAuthenticationSecurityConfig extends SecurityConfigurerAdapt
     private UserDetailsServiceImpl userDetailsService;
 
     @Autowired
-    private PreAuthenticationFailureHandler preAuthenticationFailureHandler;
+    private CloudAuthenticationFailureHandler preAuthenticationFailureHandler;
 
     @Autowired
-    private PreAuthenticationSuccessHandler preAuthenticationSuccessHandler;
+    private CloudAuthenticationSuccessHandler preAuthenticationSuccessHandler;
 
 
     @Override

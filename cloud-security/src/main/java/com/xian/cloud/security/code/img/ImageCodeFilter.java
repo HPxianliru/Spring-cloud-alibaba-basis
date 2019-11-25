@@ -27,6 +27,7 @@ import java.io.IOException;
 public class ImageCodeFilter extends OncePerRequestFilter {
     @Autowired
     private RedisTemplate redisTemplate;
+
     @Autowired
     private AuthenticationFailureHandler authenticationFailureHandler;
 
