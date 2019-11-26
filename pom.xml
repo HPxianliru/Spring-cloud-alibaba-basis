@@ -55,7 +55,18 @@
     </properties>
 
     <dependencyManagement>
+
+
+
         <dependencies>
+
+            <dependency>
+                <groupId>org.springframework.security.oauth.boot</groupId>
+                <artifactId>spring-security-oauth2-autoconfigure</artifactId>
+                <version>2.1.0.RELEASE</version>
+                <scope>compile</scope>
+            </dependency>
+
             <!-- spring-cloud-alibaba 总依赖 -->
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
@@ -169,11 +180,12 @@
                 <artifactId>cloud-user-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
+
+
 
         <!-- nacos discovery -->
         <dependency>

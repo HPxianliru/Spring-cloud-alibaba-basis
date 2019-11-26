@@ -1,4 +1,4 @@
-package com.xian.cloud.security;
+package com.xian.cloud.security.service;
 
 import cn.hutool.core.util.ObjectUtil;
 import com.xian.cloud.entity.UserEntity;
@@ -9,9 +9,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -31,6 +33,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     /**
      * 用户名密码登录
      *
@@ -40,15 +45,20 @@ public class UserDetailsServiceImpl implements UserDetailsService {
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserEntity sysUser = new UserEntity();
-        sysUser.setUsername(username);
-        UserEntity user = userService.findSecurityUserByUser(sysUser);
-        if (ObjectUtil.isNull(user)) {
-            log.info("登录用户：" + username + " 不存在.");
-            throw new UsernameNotFoundException("登录用户：" + username + " 不存在");
-        }
-        Collection<? extends GrantedAuthority> authorities = getUserAuthorities(user.getUserId());
-        return new PreSecurityUser(user.getUserId(), username, user.getPassword(), authorities, LoginType.normal);
+//        UserEntity sysUser = new UserEntity();
+//        sysUser.setUsername(username);
+//        UserEntity user = userService.findSecurityUserByUser(sysUser);
+//        if (ObjectUtil.isNull(user)) {
+//            log.info("登录用户：" + username + " 不存在.");
+//            throw new UsernameNotFoundException("登录用户：" + username + " 不存在");
+//        }
+//        Collection<? extends GrantedAuthority> authorities = getUserAuthorities(user.getUserId());
+//        return new PreSecurityUser(user.getUserId(), username, user.getPassword(), authorities, LoginType.normal);
+
+        return User.withUsername("admin")
+                .password(passwordEncoder.encode("1233456"))
+                .authorities("ROLE_ADMIN")
+                .build();
     }
 
     /**

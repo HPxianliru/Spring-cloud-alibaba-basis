@@ -1,6 +1,6 @@
 package com.xian.cloud.security.config;
 
-import com.xian.cloud.security.UserDetailsServiceImpl;
+import com.xian.cloud.security.service.UserDetailsServiceImpl;
 import com.xian.cloud.security.code.img.ImageCodeFilter;
 import com.xian.cloud.security.code.sms.SmsCodeAuthenticationSecurityConfig;
 import com.xian.cloud.security.code.sms.SmsCodeFilter;
@@ -68,7 +68,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
-
 
     /**
      * 配置策略
