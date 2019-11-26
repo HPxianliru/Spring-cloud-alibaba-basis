@@ -13,9 +13,11 @@ import org.springframework.security.oauth2.provider.error.WebResponseExceptionTr
 import org.springframework.stereotype.Component;
 
 /**
- * 异常翻译
+ * <Description> 异常捕获
  *
- * @author MrBird
+ * @author xianliru@163.com
+ * @version 1.0
+ * @createDate 2019/11/26 14:42
  */
 @Slf4j
 @Component
