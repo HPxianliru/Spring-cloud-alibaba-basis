@@ -1,0 +1,76 @@
+server:
+  port: 8088
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: cloud-oauth-server
+  redis:
+    host: 47.99.209.72
+    password:
+    database: 10
+    port: 6379
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://47.99.209.72:3308/pre?characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false
+      username: root
+      password: root
+      initial-size: 10
+      max-active: 100
+      min-idle: 10
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      #Oracle需要打开注释
+      #validation-query: SELECT 1 FROM DUAL
+      validationQuery: SELECT 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      # 合并多个DruidDataSource的监控数据
+      useGlobalDataSourceStat: true
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        login-username: admin
+        login-password: admin
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: false
+        wall:
+          config:
+            multi-statement-allow: true
+  cloud:
+    nacos:
+      config:
+        server-addr: 47.99.209.72:8848
+        file-extension: yaml
+      discovery:
+        server-addr: 47.99.209.72:8848
+  main:
+    allow-bean-definition-overriding: true
+
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+
+
+logging:
+  config: classpath:logback-local.xml
