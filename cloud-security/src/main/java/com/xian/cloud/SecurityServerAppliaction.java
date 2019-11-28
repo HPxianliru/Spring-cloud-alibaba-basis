@@ -15,6 +15,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableDiscoveryClient
 @SpringBootApplication
 @EnableFeignClients
+
 public class SecurityServerAppliaction {
 
 
