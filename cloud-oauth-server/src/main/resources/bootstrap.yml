@@ -7,15 +7,15 @@ spring:
   application:
     name: cloud-oauth-server
   redis:
-    host: 47.99.209.72
+    host: 114.67.105.74
     password:
     database: 10
-    port: 6379
+    port: 6879
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://47.99.209.72:3308/pre?characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false
+      url: jdbc:mysql://114.67.105.74:3308/pre?characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false
       username: root
       password: root
       initial-size: 10
@@ -52,10 +52,10 @@ spring:
   cloud:
     nacos:
       config:
-        server-addr: 47.99.209.72:8848
+        server-addr: 114.67.105.74:8848
         file-extension: yaml
       discovery:
-        server-addr: 47.99.209.72:8848
+        server-addr: 114.67.105.74:8848
   main:
     allow-bean-definition-overriding: true
 
