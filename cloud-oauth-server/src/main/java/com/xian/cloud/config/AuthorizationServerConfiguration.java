@@ -17,6 +17,8 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
+import javax.sql.DataSource;
+
 /**
  * @Author: xlr
  * @Date: Created in 8:59 PM 2019/11/28
@@ -32,22 +34,26 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private DataSource dataSource;
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         //配置两个客户端,一个用于password认证一个用于client认证
         //配置两个客户端,一个用于password认证一个用于client认证
-        clients.inMemory().withClient("client_1")
-                .resourceIds("order")
-                .authorizedGrantTypes("client_credentials","password","refresh_token")
-                .scopes("select")
-                .authorities("oauth2")
-                .secret(passwordEncoder().encode( "123456" ))
-                .and().withClient("client_2")
-                .resourceIds("order")
-                .authorizedGrantTypes("client_credentials","password", "refresh_token")
-                .scopes("select")
-                .authorities("oauth2")
-                .secret(passwordEncoder().encode( "123456" ) );
+//        clients.inMemory().withClient("client_1")
+//                .resourceIds("order")
+//                .authorizedGrantTypes("client_credentials","password","refresh_token")
+//                .scopes("select")
+//                .authorities("oauth2")
+//                .secret(passwordEncoder().encode( "123456" ))
+//                .and().withClient("client_2")
+//                .resourceIds("order")
+//                .authorizedGrantTypes("client_credentials","password", "refresh_token")
+//                .scopes("select")
+//                .authorities("oauth2")
+//                .secret(passwordEncoder().encode( "123456" ) );
+
+        clients.jdbc(dataSource);
     }
 
     @Override

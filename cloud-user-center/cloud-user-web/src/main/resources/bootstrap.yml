@@ -148,7 +148,15 @@ ribbon:
     enabled: true
     clients: cloud-discovery-server,cloud-discovery-client,cloud-user-center,cloud-security
 
-
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://cloud-user-center/user # 资源服务认证
+    client:
+      client-id: cloud-user-center # 认证服务ID
+      client-secret: 123456 # 认证服务密码
+      access-token-uri: http://cloud-oauth-server/oauth/token # 获取token
+      user-authorization-uri: http://cloud-oauth-server/oauth/authorize # 获取授权码
 
 # To disable Hystrix in Feign
 feign:
