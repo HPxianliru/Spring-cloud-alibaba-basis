@@ -1,5 +1,6 @@
 package com.xian.cloud.config;
 
+import com.xian.cloud.handle.AuthenticationEntryPointImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -10,6 +11,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
+import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
+import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.access.AccessDeniedHandler;
 
 
 /**
@@ -26,6 +30,17 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     @Autowired
     private UserDetailsService userDetailsService;
 
+
+    @Autowired
+    private AuthenticationEntryPointImpl unauthorizedHandler;
+
+    @Autowired
+    private AuthenticationEntryPoint authenticationEntryPoint;
+
+    @Autowired
+    private AccessDeniedHandler accessDeniedHandler;
+
+
     @Override
     public void configure(HttpSecurity http) throws Exception {
         // @formatter:off
@@ -35,6 +50,13 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 .sessionManagement().sessionCreationPolicy( SessionCreationPolicy.IF_REQUIRED)
 //                    .and()
 //                    .requestMatchers().anyRequest()
+                .and()
+                // 认证失败处理类
+                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+                // 基于token，所以不需要session
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+                // 过滤请求
+                .authorizeRequests()
                 .and()
                 .authorizeRequests()
                 // 对于登录login 图标 要允许匿名访问
@@ -58,5 +80,12 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 .userDetailsService(userDetailsService)
                 // 使用BCrypt进行密码的hash
                 .passwordEncoder(passwordEncoder);
+    }
+
+
+    @Override
+    public void configure(ResourceServerSecurityConfigurer resources) {
+        resources.authenticationEntryPoint(authenticationEntryPoint)
+                .accessDeniedHandler( accessDeniedHandler );
     }
 }

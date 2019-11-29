@@ -10,7 +10,7 @@
     <property name="PROJECT_NAME" value='${project_name}' />
 
     <!-- 定义日志文件 输入位置 -->
-    <property name="log_dir" value="/var/logs/${project_name}"/>
+    <property name="LOG_HOME" value="/var/logs/${project_name}"/>
     <!-- 日志最大的历史 30天 -->
     <property name="maxHistory" value="30"/>
 
@@ -29,7 +29,7 @@
            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%X{IP}] [%X{pid}] [%X{requestId}] [%X{version}] %highlight([%-5level] %logger{50} - %msg%n)</pattern>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>INFO</level>
+            <level>DEBUG</level>
         </filter>
     </appender>
 

@@ -70,7 +70,22 @@ management:
     health:
       show-details: ALWAYS
 
-
+# JWT参数
+jwt:
+  header: Authorization
+  tokenHead: Bearer
 
 logging:
   config: classpath:logback-local.xml
+  level:
+    com:
+      alibaba:
+        nacos:
+          client:
+            naming: error
+
+
+ribbon:
+  eager-load:
+    enabled: true
+    clients: cloud-discovery-server,cloud-discovery-client,cloud-user-center

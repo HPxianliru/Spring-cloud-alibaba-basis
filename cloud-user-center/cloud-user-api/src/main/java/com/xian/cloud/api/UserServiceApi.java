@@ -16,6 +16,7 @@ import java.util.Set;
  * @version 1.0
  * @createDate 2019/11/21 15:02
  */
+@RequestMapping("api/user")
 public interface UserServiceApi {
 
     /**

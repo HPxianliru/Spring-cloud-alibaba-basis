@@ -42,6 +42,7 @@ public class UserEntity extends Model<UserEntity> {
     /**
      * 密码
      */
+
     private String password;
 
     /**

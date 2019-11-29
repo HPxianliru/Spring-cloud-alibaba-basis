@@ -2,6 +2,8 @@ server:
   port: 9088
 
 spring:
+  main:
+    allow-bean-definition-overriding: true
   redis:
     host: 114.67.105.74
     port: 6879
@@ -107,6 +109,10 @@ spring:
       probability: 1.0
     web:
       skip-pattern: (^cleanup.*|.+favicon.*)
+  security:
+    user:
+      name: user
+      password: password
 management:
   endpoints:
     web:
@@ -142,7 +148,12 @@ mybatis-plus:
 
 logging:
   config: classpath:logback-local.xml
-
+  level:
+    com:
+      alibaba:
+        nacos:
+          client:
+            naming: error
 ribbon:
   eager-load:
     enabled: true
@@ -151,12 +162,14 @@ ribbon:
 security:
   oauth2:
     resource:
-      user-info-uri: http://cloud-user-center/user # 资源服务认证
+      user-info-uri: http://localhost:8088/oauth/user # 资源服务认证
     client:
       client-id: cloud-user-center # 认证服务ID
       client-secret: 123456 # 认证服务密码
-      access-token-uri: http://cloud-oauth-server/oauth/token # 获取token
-      user-authorization-uri: http://cloud-oauth-server/oauth/authorize # 获取授权码
+      access-token-uri: http://localhost:8088/oauth/token # 获取token
+      user-authorization-uri: http://localhost:8088/oauth/authorize # 获取授权码s
+      grant-type: client_credentials
+      scope: server
 
 # To disable Hystrix in Feign
 feign:
