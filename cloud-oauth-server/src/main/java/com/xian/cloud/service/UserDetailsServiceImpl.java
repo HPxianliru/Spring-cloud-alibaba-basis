@@ -46,6 +46,27 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 
     /**
+     * 手机验证码登录
+     *
+     * @param mobile
+     * @return
+     * @throws UsernameNotFoundException
+     */
+    public UserDetails loadUserByMobile(String mobile) throws UsernameNotFoundException {
+        UserEntity sysUser = new UserEntity();
+        sysUser.setPhone(mobile);
+        //  通过手机号mobile去数据库里查找用户以及用户权限
+        UserEntity user = userService.findSecurityUserByUser(sysUser);
+        if (ObjectUtil.isNull(user)) {
+            log.info("登录手机号：" + mobile + " 不存在.");
+            throw new UsernameNotFoundException("登录手机号：" + mobile + " 不存在");
+        }
+        // 获取用户拥有的角色
+        Collection<? extends GrantedAuthority> authorities = getUserAuthorities(user.getUserId());
+        return new PreSecurityUser(user.getUserId(), user.getUsername(), user.getPassword(), authorities, LoginType.sms);
+    }
+
+    /**
      * 封装 根据用户Id获取权限
      *
      * @param userId

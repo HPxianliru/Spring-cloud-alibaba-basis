@@ -162,12 +162,13 @@ ribbon:
 security:
   oauth2:
     resource:
-      user-info-uri: http://localhost:8088/oauth/user # 资源服务认证
+      user-info-uri: http://cloud-oauth-server/oauth/user # 资源服务认证
+      loadBalanced: true
     client:
       client-id: cloud-user-center # 认证服务ID
       client-secret: 123456 # 认证服务密码
-      access-token-uri: http://localhost:8088/oauth/token # 获取token
-      user-authorization-uri: http://localhost:8088/oauth/authorize # 获取授权码s
+      access-token-uri: http://cloud-oauth-server/oauth/token # 获取token
+      user-authorization-uri: http://cloud-oauth-server/oauth/authorize # 获取授权码s
       grant-type: client_credentials
       scope: server
 

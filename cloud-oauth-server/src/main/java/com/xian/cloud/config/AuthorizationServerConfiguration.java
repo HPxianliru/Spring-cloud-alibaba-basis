@@ -1,6 +1,7 @@
 package com.xian.cloud.config;
 
 import com.xian.cloud.service.RedisClientDetailsService;
+import com.xian.cloud.translator.CloudWebResponseExceptionTranslator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -27,8 +28,6 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
-import javax.sql.DataSource;
-
 /**
  * @Author: xlr
  * @Date: Created in 8:59 PM 2019/11/28
@@ -50,9 +49,8 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Autowired
     private RedisClientDetailsService redisClientDetailsService;
 
-
     @Autowired
-    private DataSource dataSource;
+    private CloudWebResponseExceptionTranslator exceptionTranslator;
 
     @Bean
     public TokenStore tokenStore(){
@@ -86,6 +84,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 .accessTokenConverter(jwtAccessTokenConverter())
                 .authenticationManager(authenticationManager)
                 .userDetailsService(userDetailsService)
+                .exceptionTranslator(exceptionTranslator)
                 // 2018-4-3 增加配置，允许 GET、POST 请求获取 token，即访问端点：oauth/token
                 .allowedTokenEndpointRequestMethods( HttpMethod.GET, HttpMethod.POST);
 

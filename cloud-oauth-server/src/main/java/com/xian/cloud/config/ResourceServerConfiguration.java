@@ -1,5 +1,7 @@
 package com.xian.cloud.config;
 
+import com.xian.cloud.code.img.ImageCodeFilter;
+import com.xian.cloud.code.sms.SmsCodeAuthenticationSecurityConfig;
 import com.xian.cloud.handle.AuthenticationEntryPointImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +16,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 
 /**
@@ -40,17 +43,23 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     @Autowired
     private AccessDeniedHandler accessDeniedHandler;
 
+    @Autowired
+    private ImageCodeFilter imageCodeFilter;
+
+    @Autowired
+    private SmsCodeAuthenticationSecurityConfig smsCodeAuthenticationSecurityConfig;
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
         // @formatter:off
-        http
+        http.addFilterBefore(imageCodeFilter, UsernamePasswordAuthenticationFilter.class)
                 // Since we want the protected resources to be accessible in the UI as well we need
                 // session creation to be allowed (it's disabled by default in 2.0.6)
                 .sessionManagement().sessionCreationPolicy( SessionCreationPolicy.IF_REQUIRED)
 //                    .and()
 //                    .requestMatchers().anyRequest()
                 .and()
+                .apply(smsCodeAuthenticationSecurityConfig).and()
                 // 认证失败处理类
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 // 基于token，所以不需要session
@@ -60,12 +69,10 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 .and()
                 .authorizeRequests()
                 // 对于登录login 图标 要允许匿名访问
-                .antMatchers("/index/**","/oauth/**", "/mobile/login/**", "/favicon.ico","/socialSignUp","/bind","/register/**","/actuator/**").anonymous()
+                .antMatchers("/index/**","/oauth/**", "/mobile/login/**", "/favicon.ico","/socialSignUp","/bind","/public/**","/register/**","/actuator/**").anonymous()
                 .antMatchers( HttpMethod.GET,"/*.html","/**/*.html","/**/*.css","/**/*.js")
                 .permitAll()
                 .anyRequest().authenticated()
-                .and()
-                .anonymous()
                 .and()
                 .authorizeRequests()
                 .antMatchers("/product/**").access("#oauth2.hasScope('select') and hasPermission('delete')")
