@@ -18,7 +18,6 @@
         <module>cloud-gateway</module>
         <module>cloud-monitor-admin</module>
         <module>cloud-common</module>
-        <module>cloud-security</module>
         <module>cloud-user-center</module>
         <module>cloud-monitor-zikpin</module>
         <module>cloud-oauth-server</module>
