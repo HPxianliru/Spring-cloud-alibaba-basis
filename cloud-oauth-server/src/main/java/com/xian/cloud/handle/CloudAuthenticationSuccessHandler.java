@@ -4,6 +4,7 @@ package com.xian.cloud.handle;
 import com.xian.cloud.util.JwtUtil;
 import com.xian.cloud.util.SecurityUtil;
 import com.xian.common.enums.LoginType;
+import com.xian.common.model.RestResult;
 import com.xian.common.model.RestResultBuilder;
 import com.xian.common.security.PreSecurityUser;
 import org.springframework.security.core.Authentication;
@@ -37,7 +38,8 @@ public class CloudAuthenticationSuccessHandler implements AuthenticationSuccessH
             String s = JwtUtil.generateToken(userDetail);
             // 是短信登录返回token
             if (LoginType.sms.equals(userDetail.getLoginType())) {
-                SecurityUtil.writeJavaScript(RestResultBuilder.builder().success(s).build(), response);
+                RestResult build = RestResultBuilder.builder().success(s).build();
+                SecurityUtil.writeJavaScript(build, response);
             }
         }
     }

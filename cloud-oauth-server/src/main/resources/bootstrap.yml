@@ -61,6 +61,11 @@ spring:
 
 
 
+security:
+  oauth2:
+    resource:
+      filter-order: 3
+
 management:
   endpoints:
     web:
@@ -83,7 +88,6 @@ logging:
         nacos:
           client:
             naming: error
-
 
 ribbon:
   eager-load:

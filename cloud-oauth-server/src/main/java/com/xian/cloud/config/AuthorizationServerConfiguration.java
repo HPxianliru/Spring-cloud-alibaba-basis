@@ -85,7 +85,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 .authenticationManager(authenticationManager)
                 .userDetailsService(userDetailsService)
                 .exceptionTranslator(exceptionTranslator)
-                // 2018-4-3 增加配置，允许 GET、POST 请求获取 token，即访问端点：oauth/token
+                //GET、POST请求获取 token oauth/token
                 .allowedTokenEndpointRequestMethods( HttpMethod.GET, HttpMethod.POST);
 
         endpoints.reuseRefreshTokens(true);
@@ -105,6 +105,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
+
         JwtAccessTokenConverter accessTokenConverter = new JwtAccessTokenConverter();
         DefaultAccessTokenConverter defaultAccessTokenConverter = (DefaultAccessTokenConverter) accessTokenConverter.getAccessTokenConverter();
         DefaultUserAuthenticationConverter userAuthenticationConverter = new DefaultUserAuthenticationConverter();

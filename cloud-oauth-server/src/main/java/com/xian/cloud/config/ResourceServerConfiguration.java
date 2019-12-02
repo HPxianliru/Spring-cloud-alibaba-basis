@@ -2,6 +2,7 @@ package com.xian.cloud.config;
 
 import com.xian.cloud.code.img.ImageCodeFilter;
 import com.xian.cloud.code.sms.SmsCodeAuthenticationSecurityConfig;
+import com.xian.cloud.filter.JwtAuthenticationTokenFilter;
 import com.xian.cloud.handle.AuthenticationEntryPointImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -47,12 +48,18 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     private ImageCodeFilter imageCodeFilter;
 
     @Autowired
+    private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
+
+    @Autowired
     private SmsCodeAuthenticationSecurityConfig smsCodeAuthenticationSecurityConfig;
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
         // @formatter:off
-        http.addFilterBefore(imageCodeFilter, UsernamePasswordAuthenticationFilter.class)
+        http    // 由于使用的是JWT，我们这里不需要csrf
+                .csrf().disable()
+                .addFilterBefore(jwtAuthenticationTokenFilter,UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(imageCodeFilter, UsernamePasswordAuthenticationFilter.class)
                 // Since we want the protected resources to be accessible in the UI as well we need
                 // session creation to be allowed (it's disabled by default in 2.0.6)
                 .sessionManagement().sessionCreationPolicy( SessionCreationPolicy.IF_REQUIRED)
@@ -64,9 +71,6 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 // 基于token，所以不需要session
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                // 过滤请求
-                .authorizeRequests()
-                .and()
                 .authorizeRequests()
                 // 对于登录login 图标 要允许匿名访问
                 .antMatchers("/index/**","/oauth/**", "/mobile/login/**", "/favicon.ico","/socialSignUp","/bind","/public/**","/register/**","/actuator/**").anonymous()
@@ -75,9 +79,17 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 .anyRequest().authenticated()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/product/**").access("#oauth2.hasScope('select') and hasPermission('delete')")
-                .antMatchers("/order/**").authenticated();//配置order访问控制，必须认证过后才可以访问
+//                .antMatchers("/product/**").access("#oauth2.hasScope('select') and hasPermission('delete')")
+//                .antMatchers("/order/**")
+//                .permitAll()
+                ;;//配置order访问控制，必须认证过后才可以访问
         // @formatter:on
+
+
+        // 禁用缓存
+        http.headers().cacheControl();
+
+
     }
 
     @Autowired

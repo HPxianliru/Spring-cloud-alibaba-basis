@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,10 +40,13 @@ public class JwtUtil {
      * 权限列表
      */
     private static final String AUTHORITIES = "authorities";
+
     /**
-     * 密钥
+     * 密钥    @Value("${jwtAccessKey:~!@#$%^&*()")
+     *     private String jwtAccessKey;
      */
-    private static final String SECRET = "abcdefgh";
+    private static final String SECRET = "1234567890";
+
     /**
      * 有效期1小时
      */
@@ -85,7 +89,7 @@ public class JwtUtil {
      * @param token 令牌
      * @return 用户名
      */
-    public static String getUsernameFromToken(String token) {
+    public String getUsernameFromToken(String token) {
         Claims claims = getClaimsFromToken(token);
         return claims.getSubject();
     }
@@ -128,13 +132,14 @@ public class JwtUtil {
         return null;
     }
 
+
     /**
      * 从令牌中获取数据声明
      *
      * @param token 令牌
      * @return 数据声明
      */
-    private static Claims getClaimsFromToken(String token) {
+    public Claims getClaimsFromToken(String token) {
         Claims claims;
         try {
             claims = Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token).getBody();
@@ -151,10 +156,24 @@ public class JwtUtil {
      * @param username
      * @return
      */
-    private static Boolean validateToken(String token, String username) {
+    public Boolean validateToken(String token, String username) {
         String userName = getUsernameFromToken(token);
         return (userName.equals(username) && !isTokenExpired(token));
     }
+
+    /**
+     * 验证令牌
+     *
+     * @param token       令牌
+     * @param userDetails 用户
+     * @return 是否有效
+     */
+    public Boolean validateToken(String token, UserDetails userDetails) {
+        UserDetails user =  userDetails;
+        String username = getUsernameFromToken(token);
+        return (username.equals(user.getUsername()) && !isTokenExpired(token));
+    }
+
 
     /**
      * 刷新令牌
@@ -162,7 +181,7 @@ public class JwtUtil {
      * @param token
      * @return
      */
-    public static String refreshToken(String token) {
+    public String refreshToken(String token) {
         String refreshedToken;
         try {
             Claims claims = getClaimsFromToken(token);
@@ -180,7 +199,7 @@ public class JwtUtil {
      * @param token 令牌
      * @return 是否过期
      */
-    private static Boolean isTokenExpired(String token) {
+    private Boolean isTokenExpired(String token) {
         try {
             Claims claims = getClaimsFromToken(token);
             Date expiration = claims.getExpiration();
@@ -205,4 +224,19 @@ public class JwtUtil {
     }
 
 
+    public String getTokenHeader() {
+        return tokenHeader;
+    }
+
+    public void setTokenHeader(String tokenHeader) {
+        this.tokenHeader = tokenHeader;
+    }
+
+    public String getAuthTokenStart() {
+        return authTokenStart;
+    }
+
+    public void setAuthTokenStart(String authTokenStart) {
+        this.authTokenStart = authTokenStart;
+    }
 }
