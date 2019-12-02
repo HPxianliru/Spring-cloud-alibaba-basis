@@ -16,11 +16,11 @@ import com.xian.common.exception.GlobalErrorCode;
  */
 public class RestResultBuilder<T> {
 
-    @ApiModelProperty("status状态码 0失败 1成功")
-    protected int status;
+    @ApiModelProperty("code 0失败 1成功")
+    protected int code;
 
     @ApiModelProperty("msg返回信息")
-    protected String msg;
+    protected String message;
 
     @ApiModelProperty("返回json")
     protected T data;
@@ -31,12 +31,12 @@ public class RestResultBuilder<T> {
     }
 
     public RestResultBuilder code(int code) {
-        this.status = code;
+        this.code = code;
         return this;
     }
 
     public RestResultBuilder message(String message) {
-        this.msg = message;
+        this.message = message;
         return this;
     }
 
@@ -46,48 +46,48 @@ public class RestResultBuilder<T> {
     }
 
     public RestResultBuilder errorCode(ErrorCode errorCode) {
-        this.status = errorCode.getCode();
-        this.msg = errorCode.getMessage();
+        this.code = errorCode.getCode();
+        this.message = errorCode.getMessage();
         return this;
     }
 
     public RestResultBuilder success() {
-        this.status = GlobalErrorCode.SUCCESS.getCode();
-        this.msg = GlobalErrorCode.SUCCESS.getMessage();
+        this.code = GlobalErrorCode.SUCCESS.getCode();
+        this.message = GlobalErrorCode.SUCCESS.getMessage();
         return this;
     }
 
     public RestResultBuilder success(T data) {
-        this.status = GlobalErrorCode.SUCCESS.getCode();
-        this.msg = GlobalErrorCode.SUCCESS.getMessage();
+        this.code = GlobalErrorCode.SUCCESS.getCode();
+        this.message = GlobalErrorCode.SUCCESS.getMessage();
         this.data = data;
         return this;
     }
 
     public RestResultBuilder failure() {
-        this.status = GlobalErrorCode.FAILURE.getCode();
-        this.msg = GlobalErrorCode.FAILURE.getMessage();
+        this.code = GlobalErrorCode.FAILURE.getCode();
+        this.message = GlobalErrorCode.FAILURE.getMessage();
         return this;
     }
 
     public RestResultBuilder failure(T data) {
-        this.status = GlobalErrorCode.FAILURE.getCode();
-        this.msg = GlobalErrorCode.FAILURE.getMessage();
+        this.code = GlobalErrorCode.FAILURE.getCode();
+        this.message = GlobalErrorCode.FAILURE.getMessage();
         this.data = data;
         return this;
     }
     public RestResultBuilder objNull() {
-        this.status = GlobalErrorCode.FAILURE.getCode();
-        this.msg = GlobalErrorCode.FAILURE.getMessage();
+        this.code = GlobalErrorCode.FAILURE.getCode();
+        this.message = GlobalErrorCode.FAILURE.getMessage();
         return this;
     }
     public RestResultBuilder objNull(T data) {
-        this.status = GlobalErrorCode.OBJ_NULL.getCode();
-        this.msg = GlobalErrorCode.OBJ_NULL.getMessage();
+        this.code = GlobalErrorCode.OBJ_NULL.getCode();
+        this.message = GlobalErrorCode.OBJ_NULL.getMessage();
         this.data = data;
         return this;
     }
-    
+
 
      public RestResultBuilder result(boolean successful) {
         if (successful) {
@@ -107,7 +107,7 @@ public class RestResultBuilder<T> {
     }
 
     public RestResult build() {
-        return new RestResult<T>(this.status, this.msg, this.data);
+        return new RestResult<T>(this.code, this.message, this.data);
     }
 
     public RestResult build(RestResult restResult) {

@@ -24,15 +24,15 @@ public class RestResult<T extends Object> implements Serializable {
      * 返回编码
      */
     @JSONField(ordinal = 1)
-    @ApiModelProperty(value = "code状态码 1正常 其他全部错误",name="status",required = true,dataType="Integer")
-    private int status;
+    @ApiModelProperty(value = "code状态码 1正常 其他全部错误",name="code",required = true,dataType="Integer")
+    private int code;
 
     /**
      * 返回消息
      */
     @JSONField(ordinal = 2)
     @ApiModelProperty(value = "返回提示信息",name="msg",required = true,dataType="string")
-    private String msg;
+    private String message;
 
     /**
      * 返回数据
@@ -47,30 +47,33 @@ public class RestResult<T extends Object> implements Serializable {
     }
 
     public RestResult(int code, String message) {
-        this.status = code;
-        this.msg = message;
+        this.code = code;
+        this.message = message;
     }
 
     public RestResult(int code, String message, T data) {
-        this.status = code;
-        this.msg = message;
+        this.code = code;
+        this.message = message;
         this.data = data;
     }
 
-    public int getStatus() {
-        return status;
+    public int getCode() {
+        return code;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setCode(int code) {
+        this.code = code;
     }
-
     public String getMsg() {
-        return StringUtils.trimToEmpty(msg);
+        return StringUtils.trimToEmpty(message);
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public String getMessage() {
+        return StringUtils.trimToEmpty(message);
+    }
+
+    public void setMessage(String message){
+        this.message = message;
     }
 
     public T getData() {
