@@ -9,11 +9,11 @@ spring:
   main:
     allow-bean-definition-overriding: true
   redis:
-    host: 47.99.209.72
+    host: 114.67.105.74
     port: 6379
     database: 9
   rabbitmq:
-    host: 47.99.209.72
+    host: 114.67.105.74
     port: 5672
     username: guest
     password: guest
@@ -22,7 +22,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://47.99.209.72:3308/seata?characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false
+      url: jdbc:mysql://114.67.105.74:3308/seata?characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false
       username: root
       password: root
       initial-size: 10
@@ -64,14 +64,14 @@ spring:
         endpoint: oss-cn-beijing.aliyuncs.com
     nacos:
       config:
-        server-addr: 47.99.209.72:8848
+        server-addr: 114.67.105.74:8848
         file-extension: yaml
         # 命名空间的使用
         #namespace: e071c3ab-b280-4ae7-a081-044fff5613ad
       discovery:
         metadata:
           version: 1
-        server-addr: 47.99.209.72:8848
+        server-addr: 114.67.105.74:8848
         # 命名空间的使用
         #namespace: e071c3ab-b280-4ae7-a081-044fff5613ad
 
