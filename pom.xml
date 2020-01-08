@@ -21,6 +21,7 @@
         <module>cloud-user-center</module>
         <module>cloud-monitor-zikpin</module>
         <module>cloud-oauth-server</module>
+        <module>cloud-wechat</module>
     </modules>
 
 

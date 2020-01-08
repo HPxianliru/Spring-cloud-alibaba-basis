@@ -1,5 +1,14 @@
 server:
   port: 9010
+  tomcat:
+    #最大连接数
+    max-threads: 300
+    #最大线程数
+    max-connections: 10000
+    #编码方式
+    uri-encoding: UTF-8
+    #post提交数据最大大小，设置为0不限制
+    max-http-post-size: 0
 
 spring:
   profiles:

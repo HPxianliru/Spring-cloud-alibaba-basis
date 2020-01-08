@@ -25,7 +25,7 @@ spring:
       datasource:
         na:
           nacos:
-            server-addr: 47.99.209.72:8848
+            server-addr: ${spring.cloud.nacos.config.server-addr}
             groupId: DEFAULT_GROUP
             dataId: ${spring.application.name}-${spring.profiles.active}-sentinel
             rule-type: flow
