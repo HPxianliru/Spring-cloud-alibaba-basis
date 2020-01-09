@@ -5,10 +5,9 @@ spring:
   main:
     allow-bean-definition-overriding: true
   redis:
-    host: 114.67.105.74
-    port: 6879
-    database: 10
-    password:
+    sentinel:
+      master: mymaster
+      nodes: 114.67.105.74:26379,114.67.105.74:26380,114.67.105.74:26381
   mail:
     host: smtp.qq.com
     #发送者邮箱需要和实际发送者一致，否则报错501
@@ -31,8 +30,8 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
-      driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://114.67.105.74:3308/pre?characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://mysql.xianliru.com:3308/test?characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false
       username: root
       password: root
       initial-size: 10
@@ -69,24 +68,23 @@ spring:
   cloud:
     nacos:
       config:
-        server-addr: 114.67.105.74:8848
+        server-addr: nacos.xianliru.com
         file-extension: yaml
       discovery:
-        server-addr: 114.67.105.74:8848
+        server-addr: nacos.xianliru.com
     sentinel:
       filter:
         # sentienl 默认生效，本地调试false
         enabled: true
       transport:
-        dashboard: localhost:8890
-        port: 8719
+        dashboard: sentinel.xianliru.com
       # 饥饿加载
       eager: true
       datasource:
         # Sentinel基于nacos存储获取配置信息
         na:
           nacos:
-            server-addr: 114.67.105.74:8848
+            server-addr: nacos.xianliru.com
             groupId: DEFAULT_GROUP
             dataId: ${spring.application.name}-${spring.profiles.active}-sentinel
             # 类型

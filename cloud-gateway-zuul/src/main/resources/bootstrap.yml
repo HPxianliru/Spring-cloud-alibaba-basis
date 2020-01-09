@@ -25,10 +25,10 @@ spring:
         enabled: false
     nacos:
       config:
-        server-addr: 114.67.105.74:8848
+        server-addr: nacos.xianliru.com
         file-extension: yaml
       discovery:
-        server-addr: 114.67.105.74:8848
+        server-addr: nacos.xianliru.com
 
 zuul:
   host:

@@ -13,14 +13,13 @@ spring:
     time-zone: GMT+8
     default-property-inclusion: non_null
   redis:
-    host: 47.99.209.72
+    host: 114.67.105.74
     port: 6379
     database: 9
   cloud:
     sentinel:
       transport:
-        dashboard: localhost:8890
-        port: 8719
+        dashboard: sentinel.xianliru.com
       eager: true
       datasource:
         na:
@@ -31,10 +30,10 @@ spring:
             rule-type: flow
     nacos:
       discovery:
-        server-addr: 47.99.209.72:8848
+        server-addr: nacos.xianliru.com
       # ${prefix}-${spring.profile.active}.${file-extension}
       config:
-        server-addr: 47.99.209.72:8848
+        server-addr: nacos.xianliru.com
         file-extension: yaml
         timeout: 6000
     gateway:

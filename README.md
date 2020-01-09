@@ -14,7 +14,7 @@ spring cloud alibaba 基础学习
  [示例代码地址](https://github.com/HPxianliru/Spring-cloud-alibaba-basis/)
  
  
- 服务器nacos 地址 http://47.99.209.72:8848/nacos
+ 服务器nacos 地址 http://nacos.xianliru.com/nacos
 
  
  往期地址 spring cloud alibaba 地址

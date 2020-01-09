@@ -64,14 +64,14 @@ spring:
         endpoint: oss-cn-beijing.aliyuncs.com
     nacos:
       config:
-        server-addr: 114.67.105.74:8848
+        server-addr: nacos.xianliru.com
         file-extension: yaml
         # 命名空间的使用
         #namespace: e071c3ab-b280-4ae7-a081-044fff5613ad
       discovery:
         metadata:
           version: 1
-        server-addr: 114.67.105.74:8848
+        server-addr: nacos.xianliru.com
         # 命名空间的使用
         #namespace: e071c3ab-b280-4ae7-a081-044fff5613ad
 

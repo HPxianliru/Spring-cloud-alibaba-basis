@@ -10,10 +10,10 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 114.67.105.74:8848
+        server-addr: nacos.xianliru.com
       # ${prefix}-${spring.profile.active}.${file-extension}
       config:
-        server-addr: 114.67.105.74:8848
+        server-addr: nacos.xianliru.com
         file-extension: yaml
         timeout: 6000
   # 数据源

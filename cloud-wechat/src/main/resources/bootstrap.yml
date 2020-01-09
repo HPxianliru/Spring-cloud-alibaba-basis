@@ -20,8 +20,7 @@ spring:
         # sentienl 默认生效，本地调试false
         enabled: true
       transport:
-        dashboard: localhost:8890
-        port: 8719
+        dashboard: sentinel.xianliru.com
       # 饥饿加载
       eager: true
       datasource:

@@ -64,11 +64,4 @@ public class SortUtils {
         }
         return params;
     }
-
-    public static void main(String[] args) {
-
-
-
-
-    }
 }
