@@ -12,4 +12,6 @@ public class TxAi {
 
     public static final String AI_URL = "https://api.ai.qq.com/";
 
+    public static final String JD_COUPON= "https://store.ixiaocong.net/";
+
 }

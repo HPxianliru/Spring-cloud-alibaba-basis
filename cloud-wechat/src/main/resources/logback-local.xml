@@ -29,7 +29,7 @@
            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%X{IP}] [%X{pid}] [%X{requestId}] [%X{version}] %highlight([%-5level] %logger{50} - %msg%n)</pattern>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>DEBUG</level>
+            <level>INFO</level>
         </filter>
     </appender>
 

@@ -21,6 +21,7 @@
         <module>cloud-common-tools</module>
         <module>cloud-common-swagger</module>
         <module>cloud-common-security</module>
+        <module>cloud-common-zk-starter</module>
     </modules>
     <packaging>pom</packaging>
 

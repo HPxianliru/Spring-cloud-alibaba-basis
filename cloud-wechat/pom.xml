@@ -58,5 +58,12 @@
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.xian.cloud</groupId>
+            <artifactId>cloud-common-zk-starter</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
     </dependencies>
 </project>

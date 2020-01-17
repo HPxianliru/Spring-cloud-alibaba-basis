@@ -64,4 +64,14 @@ public class SortUtils {
         }
         return params;
     }
+
+    public static void main(String[] args) {
+        int a=3,b=3;
+        for (int i = 0; i < 10; i++) {
+            a <<= i;
+            int c = a/3;
+            System.out.println(i+" "+c+" " +a);
+        }
+
+    }
 }

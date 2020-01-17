@@ -108,6 +108,7 @@ public class WxMpConfiguration {
         // 默认
         newRouter.rule().async(false).handler(this.msgHandler).end();
 
+
         return newRouter;
     }
 

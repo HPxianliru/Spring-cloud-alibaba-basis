@@ -151,7 +151,7 @@ logging:
       alibaba:
         nacos:
           client:
-            naming: error
+            naming: info
 ribbon:
   eager-load:
     enabled: true
@@ -191,5 +191,11 @@ hystrix:
           strategy: THREAD
           thread:
             timeoutInMilliseconds: 5000
+
+
+zookeeper:
+  enable: true
+  address: 127.0.0.1:2181
+  timeout: 60000
 
 
