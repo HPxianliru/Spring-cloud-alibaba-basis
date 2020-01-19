@@ -35,4 +35,8 @@ public class DeptDTO {
     private Integer sort;
 
 
+    public DeptDTO(){
+        System.out.println("spring 自定义register");
+    }
+
 }

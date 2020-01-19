@@ -1,0 +1,89 @@
+server:
+  port: 9088
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  redis:
+    sentinel:
+      master: mymaster
+      nodes: 114.67.105.74:26379,114.67.105.74:26380,114.67.105.74:26381
+  mail:
+    host: smtp.qq.com
+    #发送者邮箱需要和实际发送者一致，否则报错501
+    username: 402701653
+    #发送者邮箱的授权码，不是密码，自己去qq邮箱设置
+    password: kdnmqtckwbsgcadi
+    properties:
+      mail:
+        smtp:
+          # 设置是否需要认证，如果为true,那么用户名和密码就必须的，
+          # 如果设置false，可以不设置用户名和密码，当然也得看你的对接的平台是否支持无密码进行访问的
+          auth: true
+          starttls:
+            enable: true
+            required: true
+  profiles:
+    active: dev
+  application:
+    name: cloud-demo-spring-register
+  cloud:
+    nacos:
+      config:
+        server-addr: nacos.xianliru.com
+        file-extension: yaml
+      discovery:
+        server-addr: nacos.xianliru.com
+    sentinel:
+      filter:
+        # sentienl 默认生效，本地调试false
+        enabled: true
+      transport:
+        dashboard: sentinel.xianliru.com
+      # 饥饿加载
+      eager: true
+      datasource:
+        # Sentinel基于nacos存储获取配置信息
+        na:
+          nacos:
+            server-addr: nacos.xianliru.com
+            groupId: DEFAULT_GROUP
+            dataId: ${spring.application.name}-${spring.profiles.active}-sentinel
+            # 类型
+#            FLOW("flow", FlowRule.class),
+#            DEGRADE("degrade", DegradeRule.class),
+#            PARAM_FLOW("param-flow", ParamFlowRule.class),
+#            SYSTEM("system", SystemRule.class),
+#            AUTHORITY("authority", AuthorityRule.class),
+#            GW_FLOW("gw-flow", "com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayFlowRule"),
+#            GW_API_GROUP("gw-api-group", "com.alibaba.csp.sentinel.adapter.gateway.common.api.ApiDefinition");
+            rule-type: flow
+  zipkin:
+    locator:
+      discovery:
+        enabled: true
+    base-url: http://cloud-zipkin-server
+  sleuth:
+    sampler:
+      # 默认是0.1 上报10%的数据。1.0上报全部数据
+      probability: 1.0
+    web:
+      skip-pattern: (^cleanup.*|.+favicon.*)
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+logging:
+  level:
+    com:
+      alibaba:
+        nacos:
+          client:
+            naming: info
+
+
