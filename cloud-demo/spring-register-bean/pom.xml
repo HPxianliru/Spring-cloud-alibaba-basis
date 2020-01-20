@@ -38,6 +38,13 @@
             <version>17.0.0</version>
             <scope>compile</scope>
         </dependency>
+
+        <!--rabbitmq-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>

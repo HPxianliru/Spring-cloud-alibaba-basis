@@ -30,9 +30,9 @@ public class LoadBeanTest {
 
     @Test
     public void testPostProcessBeanFactory() throws Exception {
-        DeptDTO deptDTO = SpringUtils.getBean(DeptDTO.class);
+        DeptDTO q = SpringUtils.getBean("deptDTO");
 
-        System.out.println(deptDTO);
+        System.out.println(q);
     }
 
 

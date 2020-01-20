@@ -27,6 +27,13 @@ spring:
     active: dev
   application:
     name: cloud-demo-spring-register
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: admin
+    password: admin
+    #虚拟host 可以不设置,使用server默认host
+    virtual-host: my_vhost
   cloud:
     nacos:
       config:
