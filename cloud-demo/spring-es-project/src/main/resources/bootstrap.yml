@@ -1,0 +1,43 @@
+# 配置端口
+server:
+  port: 8088
+
+# 配置ElasticSearch
+spring:
+  application:
+    name: es-demo
+  # 异常处理
+  elasticsearch:
+    rest:
+      uris: 114.67.105.74:9200
+  data:
+    elasticsearch:
+      cluster-nodes: 114.67.105.74:9300
+      cluster-name: elasticsearch-cluster
+      repositories:
+        enabled: true
+  cloud:
+    nacos:
+      config:
+        server-addr: nacos.xianliru.com
+        file-extension: yaml
+      discovery:
+        server-addr: nacos.xianliru.com
+
+logging:
+  level:
+    com:
+      alibaba:
+        nacos:
+          client:
+            naming: info
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+

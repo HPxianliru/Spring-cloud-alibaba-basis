@@ -22,7 +22,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @Slf4j
 @Data
-@MapperScan({"com.xian.cloud.dao","com.xian.cloud.*.dao"})
+@MapperScan({"com.xian.cloud.dao","com.xian.cloud.*.dao","com.xian.dianping.dao"})
 public class MybatisConfig {
 
     /**

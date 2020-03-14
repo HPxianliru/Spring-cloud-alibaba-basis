@@ -26,6 +26,11 @@ public class BusinessException extends BaseException {
         this.error.setErrorMessage(message);
     }
 
+    public BusinessException() {
+        super("未知异常");
+        this.error.setErrorMessage("未知异常");
+    }
+
     public BusinessException(String message, String extMessage) {
         super(message + ":" + extMessage);
         this.error.setErrorMessage(message);

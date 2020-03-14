@@ -23,6 +23,7 @@
         <module>cloud-oauth-server</module>
         <module>cloud-wechat</module>
         <module>cloud-demo</module>
+        <module>dingping-es</module>
     </modules>
 
 
